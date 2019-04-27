@@ -1,0 +1,92 @@
+.todo-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 0;
+  margin-right: 0;
+  width: 60%;
+  border-radius: 16px;
+  padding: 20px;
+}
+.todo-item-container[item-priority="5"] {
+  background-color: #cc0606;
+}
+.todo-item-container[item-priority="4"] {
+  background-color: #cc2323;
+}
+.todo-item-container[item-priority="3"] {
+  background-color: #ff9416;
+}
+.todo-item-container[item-priority="2"] {
+  background-color: #c2c323;
+}
+.todo-item-container[item-priority="1"] {
+  background-color: #23cc23;
+}
+.todo-item-container:hover .todo-item-actions {
+  visibility: visible;
+  animation: fadein 0.75s;
+}
+@-moz-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@-o-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+.todo-item-text {
+  align-self: center;
+  color: #fff;
+  word-wrap: break-word;
+  overflow: ellipsis;
+  max-width: 90%;
+}
+.todo-item-actions {
+  display: flex;
+  width: 10%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  visibility: hidden;
+  align-self: center;
+  font-size: 20px;
+  margin-left: 16px;
+  opacity: 0.8;
+}
+.todo-item-actions div:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.todo-item-actions .todo-item-complete {
+  color: #fff;
+}
+.todo-item-actions .todo-item-edit {
+  color: #fff;
+}
+.todo-item-actions .todo-item-delete {
+  color: #fff;
+}
