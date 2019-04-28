@@ -1,13 +1,12 @@
-import { editItem, completeItem, deleteItem } from "../../actions/items";
-
 export interface TodoItemProps {
-  readonly id: string;
-  readonly text: string;
-  readonly priority: TodoItemPriorityEnum;
-  readonly isCompleted: boolean;
-  readonly editCallback: typeof editItem;
-  readonly completeCallback: typeof completeItem;
-  readonly deleteCallback: typeof deleteItem;
+  readonly id?: string;
+  readonly text?: string;
+  readonly priority?: TodoItemPriorityEnum;
+  readonly isCompleted?: boolean;
+  readonly editModeOnly?: boolean;
+  readonly editCallback: Function;
+  readonly completeCallback: Function;
+  readonly deleteCallback: Function;
 }
 
 export enum TodoItemPriorityEnum {

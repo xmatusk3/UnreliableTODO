@@ -5,10 +5,11 @@ import { TodoItemProps, TodoItemPriorityEnum } from "./types";
 import ItemActions from "../ItemActions/ItemActions";
 
 const TodoItem: React.FC<TodoItemProps> = props => {
-  const [isEditMode, setEditMode] = useState(false);
+  const [isEditMode, setEditMode] = useState(!!props.editModeOnly);
   const [newText, setNewText] = useState(props.text);
   const [priority, setPriority] = useState(props.priority);
 
+  // Prepare properties
   const editCallback = isEditMode ? undefined : () => setEditMode(true);
   const completeCallback = isEditMode
     ? () => {
@@ -18,9 +19,10 @@ const TodoItem: React.FC<TodoItemProps> = props => {
     : () => {
         props.completeCallback(props.id);
       };
-  const deleteCallback = isEditMode
-    ? () => setEditMode(false)
-    : () => props.deleteCallback(props.id);
+  const deleteCallback =
+    isEditMode && !props.editModeOnly
+      ? () => setEditMode(false)
+      : () => props.deleteCallback(props.id);
   const completeTitle = isEditMode ? "Finish editing" : "Complete task";
   const deleteTitle = isEditMode ? "Cancel editing" : "Delete task";
 
@@ -52,7 +54,7 @@ const TodoItem: React.FC<TodoItemProps> = props => {
   return (
     <div
       className="todo-item-container"
-      item-priority={props.priority}
+      item-priority={isEditMode ? priority : props.priority}
       is-completed={`${props.isCompleted}`}
       is-edit={`${isEditMode}`}
     >

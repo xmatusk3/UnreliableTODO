@@ -7,7 +7,9 @@ import {
   COMPLETE_ITEM,
   EDIT_ITEM,
   EditItemAction,
-  DELETE_ITEM
+  DELETE_ITEM,
+  ADD_ITEM,
+  AddItemAction
 } from "../../actions/items/types";
 import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
 
@@ -63,6 +65,11 @@ const itemsReducer: Reducer<ItemsState, ItemsActionTypes> = (
   { type, payload }
 ) => {
   switch (type) {
+    case ADD_ITEM:
+      return {
+        ...state,
+        [payload.id]: { ...(payload as AddItemAction["payload"]) }
+      };
     case COMPLETE_ITEM:
       return {
         ...state,

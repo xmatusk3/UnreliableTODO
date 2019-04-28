@@ -1,8 +1,30 @@
 .todo-list {
   margin: auto;
   width: 50vw;
-  padding: 32px;
+  padding: 16px;
   background-color: #e3e4e5;
-  height: 100vh;
-  border-radius: 10% 10% 0 0;
+
+  .todo-list-add {
+    font-size: 32px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    i {
+      background-color: rgba(0,0,0,0.5);
+      padding: 12px;
+      border-radius: 100%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0,0,0,0.7);
+      }
+
+      &:active {
+        background-color: rgba(0,0,0,1);
+      }
+    }
+
+  }
 }

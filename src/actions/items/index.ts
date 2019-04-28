@@ -4,9 +4,18 @@ import {
   EditItemAction,
   EDIT_ITEM,
   DeleteItemAction,
-  DELETE_ITEM
+  DELETE_ITEM,
+  ADD_ITEM
 } from "./types";
-import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
+import {
+  TodoItemPriorityEnum,
+  TodoItem
+} from "../../components/TodoItem/types";
+
+export const addItem = (item: TodoItem) => ({
+  type: ADD_ITEM,
+  payload: item
+});
 
 export const completeItem = (id: string) =>
   ({

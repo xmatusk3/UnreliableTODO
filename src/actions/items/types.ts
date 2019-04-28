@@ -1,8 +1,15 @@
 import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
+import { TodoItem } from "../../components/TodoItem/types";
 
+export const ADD_ITEM = "ADD_ITEM";
 export const COMPLETE_ITEM = "COMPLETE_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
+
+export interface AddItemAction {
+  readonly type: typeof ADD_ITEM;
+  readonly payload: TodoItem;
+}
 
 export interface CompleteItemAction {
   readonly type: typeof COMPLETE_ITEM;
@@ -28,6 +35,7 @@ export interface DeleteItemAction {
 }
 
 export type ItemsActionTypes =
+  | AddItemAction
   | EditItemAction
   | CompleteItemAction
   | DeleteItemAction;
