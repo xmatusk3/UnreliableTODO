@@ -1,5 +1,5 @@
-import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
-import { TodoItem } from "../../components/TodoItem/types";
+import { TodoItemPriorityEnum } from "../../components/Todos/TodoItem/types";
+import { TodoItem } from "../../components/Todos/TodoItem/types";
 
 export const ADD_ITEM = "ADD_ITEM";
 export const COMPLETE_ITEM = "COMPLETE_ITEM";

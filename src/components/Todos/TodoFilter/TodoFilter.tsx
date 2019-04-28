@@ -1,13 +1,13 @@
 import React from "react";
 
 import { TodoFilterProps } from "./types";
-import DropDownList from "../DropDownList/DropDownList";
-import { getPriorityDDLValues } from "../../utils";
+import DropDownList from "../../common/DropDownList/DropDownList";
+import { getPriorityDDLValues } from "../../../utils";
 import "./TodoFilter.css";
 import { TodoItem } from "../TodoItem/types";
 
 const TodoFilter: React.FC<TodoFilterProps> = props => {
-  const defaultValue = "Every";
+  const defaultValue = "Any";
   const ddlData = getPriorityDDLValues();
   ddlData[defaultValue] = defaultValue;
 
@@ -17,7 +17,7 @@ const TodoFilter: React.FC<TodoFilterProps> = props => {
 
   return (
     <div className="todo-filter">
-      Display tasks with
+      Bask in tasks with
       <DropDownList
         defaultValue={defaultValue}
         onChange={event => props.onApply(getFilter(event.target.value))}

@@ -1,10 +1,10 @@
-import { ItemsState } from "../../reducers/items/types";
+import { ItemsState } from "../../../reducers/items/types";
 import {
   deleteItem,
   completeItem,
   editItem,
   addItem
-} from "../../actions/items";
+} from "../../../actions/items";
 import { TodoItem } from "../TodoItem/types";
 
 export interface TodoListReduxProps {

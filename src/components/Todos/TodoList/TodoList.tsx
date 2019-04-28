@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { TodoState } from "../../reducers/types";
+import { TodoState } from "../../../reducers/types";
 import { TodoListReduxProps, TodoListState } from "./types";
 import TodoItem from "../TodoItem/TodoItem";
 import {
@@ -9,7 +9,7 @@ import {
   completeItem,
   deleteItem,
   addItem
-} from "../../actions/items";
+} from "../../../actions/items";
 import "./TodoList.css";
 import { TodoItemPriorityEnum } from "../TodoItem/types";
 import TodoFilter from "../TodoFilter/TodoFilter";
@@ -49,7 +49,9 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
   renderItems() {
     return Object.values(this.props.items)
       .filter(this.state.filter)
-      .sort((itemA, itemB) => itemB.priority - itemA.priority)
+      .sort((itemA, itemB) =>
+        itemB.isCompleted ? -1 : itemB.priority - itemA.priority
+      )
       .map(item => (
         <TodoItem
           priority={item.priority}
@@ -84,7 +86,7 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
   render() {
     return (
       <div className="todo-list">
-        <div className="todo-list-add">
+        <div className="todo-list-add" title="Add new task">
           <i className="fas fa-plus" onClick={this.toggleAdd} />
         </div>
         {this.renderAddItem()}

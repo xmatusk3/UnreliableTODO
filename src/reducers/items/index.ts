@@ -11,7 +11,7 @@ import {
   ADD_ITEM,
   AddItemAction
 } from "../../actions/items/types";
-import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
+import { TodoItemPriorityEnum } from "../../components/Todos/TodoItem/types";
 
 const INIT_STATE: ItemsState = {
   guid1: {

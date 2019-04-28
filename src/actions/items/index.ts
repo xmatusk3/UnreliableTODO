@@ -10,7 +10,7 @@ import {
 import {
   TodoItemPriorityEnum,
   TodoItem
-} from "../../components/TodoItem/types";
+} from "../../components/Todos/TodoItem/types";
 
 export const addItem = (item: TodoItem) => ({
   type: ADD_ITEM,

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "./TodoItem.css";
 import { TodoItemProps } from "./types";
 import ItemActions from "../ItemActions/ItemActions";
-import DropDownList from "../DropDownList/DropDownList";
-import { getPriorityDDLValues } from "../../utils";
+import DropDownList from "../../common/DropDownList/DropDownList";
+import { getPriorityDDLValues } from "../../../utils";
 
 const TodoItem: React.FC<TodoItemProps> = props => {
   const [isEditMode, setEditMode] = useState(!!props.editModeOnly);
@@ -22,7 +22,7 @@ const TodoItem: React.FC<TodoItemProps> = props => {
         props.completeCallback(props.id);
       };
   const deleteCallback =
-    isEditMode && !props.editModeOnly
+    isEditMode && !props.editModeOnly && !props.isCompleted
       ? () => setEditMode(false)
       : () => props.deleteCallback(props.id);
   const completeTitle = isEditMode ? "Finish editing" : "Complete task";
@@ -61,16 +61,14 @@ const TodoItem: React.FC<TodoItemProps> = props => {
         <div className="todo-item-text">{props.text}</div>
       )}
 
-      {!props.isCompleted && (
-        <ItemActions
-          editCallback={editCallback}
-          completeCallback={completeCallback}
-          deleteCallback={deleteCallback}
-          editTitle="Edit task"
-          completeTitle={completeTitle}
-          deleteTitle={deleteTitle}
-        />
-      )}
+      <ItemActions
+        editCallback={props.isCompleted ? undefined : editCallback}
+        completeCallback={props.isCompleted ? undefined : completeCallback}
+        deleteCallback={deleteCallback}
+        editTitle="Edit task"
+        completeTitle={completeTitle}
+        deleteTitle={deleteTitle}
+      />
     </div>
   );
 };

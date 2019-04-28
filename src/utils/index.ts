@@ -1,4 +1,4 @@
-import { TodoItemPriorityEnum } from "../components/TodoItem/types";
+import { TodoItemPriorityEnum } from "../components/Todos/TodoItem/types";
 
 export const getPriorityDDLValues: () => { [key: string]: string } = () => {
   const result: { [key: string]: string } = {};

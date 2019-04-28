@@ -5,13 +5,13 @@ import "./ItemActions.css";
 const ItemActions: React.FC<ItemActionsProps> = props => {
   return (
     <div className="item-actions">
-      {props.completeCallback && (
+      {props.deleteCallback && (
         <div
-          className="item-complete"
-          title={props.completeTitle}
-          onClick={() => (props.completeCallback as Function)()}
+          className="item-delete"
+          title={props.deleteTitle}
+          onClick={() => (props.deleteCallback as Function)()}
         >
-          <i className="fas fa-check" />
+          <i className="fas fa-times" />
         </div>
       )}
       {props.editCallback && (
@@ -23,13 +23,13 @@ const ItemActions: React.FC<ItemActionsProps> = props => {
           <i className="fas fa-pencil-alt" />
         </div>
       )}
-      {props.deleteCallback && (
+      {props.completeCallback && (
         <div
-          className="item-delete"
-          title={props.deleteTitle}
-          onClick={() => (props.deleteCallback as Function)()}
+          className="item-complete"
+          title={props.completeTitle}
+          onClick={() => (props.completeCallback as Function)()}
         >
-          <i className="fas fa-times" />
+          <i className="fas fa-check" />
         </div>
       )}
     </div>

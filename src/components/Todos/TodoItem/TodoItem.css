@@ -31,6 +31,34 @@
 .todo-item-container[is-edit="true"] .item-actions {
   visibility: visible;
 }
+.todo-item-container .todo-item-text {
+  align-self: center;
+  color: #fff;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+.todo-item-container .todo-item-edit {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 10px;
+  flex-grow: 1;
+  color: #fff;
+}
+.todo-item-container .todo-item-edit .todo-item-edit-text {
+  width: 100%;
+  border-radius: 10px;
+  padding: 3px 7px;
+  margin-bottom: 10px;
+}
+.todo-item-container .todo-item-edit .todo-item-edit-priority {
+  font-weight: bold;
+  margin-left: 5px;
+}
+.todo-item-container .todo-item-edit .todo-item-edit-priority select {
+  margin-left: 5px;
+}
 @-moz-keyframes fadein {
   0% {
     opacity: 0;
@@ -62,34 +90,4 @@
   100% {
     opacity: 0.8;
   }
-}
-.todo-item-text {
-  align-self: center;
-  color: #fff;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  width: 90%;
-}
-.todo-item-edit {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-right: 10px;
-  flex-grow: 1;
-  color: #fff;
-}
-.todo-item-edit .todo-item-edit-text {
-  width: 100%;
-  border-radius: 10px;
-  padding: 3px 7px;
-  margin-bottom: 10px;
-}
-.todo-item-edit .todo-item-edit-priority {
-  font-weight: bold;
-  margin-left: 5px;
-}
-.todo-item-edit .todo-item-edit-priority select {
-  margin-left: 5px;
-  border-radius: 10px;
-  padding: 0 3px;
 }
