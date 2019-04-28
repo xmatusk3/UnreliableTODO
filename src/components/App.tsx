@@ -1,9 +1,9 @@
 import React from "react";
 
-import TodoList from "./Todos/TodoList/TodoList";
+import AppContainer from "./AppContainer/AppContainer";
 
 const App: React.FC = () => {
-  return <TodoList />;
+  return <AppContainer />;
 };
 
 export default App;

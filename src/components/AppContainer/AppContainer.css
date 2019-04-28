@@ -1,0 +1,8 @@
+.app-container {
+  width: 50vw;
+  height: 100vh;
+  margin: auto;
+  padding: 0 3vw 0 3vw;
+  background-color: #e3e4e5;
+  display: flex;
+}
