@@ -23,3 +23,8 @@
 .todo-list .todo-list-add i:active {
   background-color: #000;
 }
+.todo-list .todo-list-content {
+  background-color: rgba(0,0,0,0.2);
+  padding: 8px;
+  border-radius: 20px;
+}

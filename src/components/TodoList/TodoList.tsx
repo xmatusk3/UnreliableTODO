@@ -49,6 +49,7 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
   renderItems() {
     return Object.values(this.props.items)
       .filter(this.state.filter)
+      .sort((itemA, itemB) => itemB.priority - itemA.priority)
       .map(item => (
         <TodoItem
           priority={item.priority}
@@ -86,8 +87,8 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
         <div className="todo-list-add">
           <i className="fas fa-plus" onClick={this.toggleAdd} />
         </div>
-        <div>
-          {this.renderAddItem()}
+        {this.renderAddItem()}
+        <div className="todo-list-content">
           <TodoFilter
             onApply={(filter: TodoListState["filter"]) =>
               this.setState({ filter })

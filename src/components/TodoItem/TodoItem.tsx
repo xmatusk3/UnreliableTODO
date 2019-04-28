@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./TodoItem.css";
-import { TodoItemProps, TodoItemPriorityEnum } from "./types";
+import { TodoItemProps } from "./types";
 import ItemActions from "../ItemActions/ItemActions";
 import DropDownList from "../DropDownList/DropDownList";
 import { getPriorityDDLValues } from "../../utils";
