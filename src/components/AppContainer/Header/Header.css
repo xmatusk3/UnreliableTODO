@@ -1,0 +1,28 @@
+.header {
+  font-size: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3vw;
+  padding-bottom: 64px;
+}
+.header .header-text {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 20px;
+  padding: 0px 10px;
+  display: inline-block;
+  line-height: 5px;
+}
+.header .header-text h1 {
+  pointer-events: none;
+  user-select: none;
+}
+.header .header-edit i {
+  font-size: 112px;
+  color: rgba(0,0,0,0.7);
+  cursor: pointer;
+}
+.header .header-edit i:hover {
+  color: rgba(0,0,0,0.4);
+}
