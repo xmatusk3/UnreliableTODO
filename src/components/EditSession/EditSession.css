@@ -1,0 +1,27 @@
+.edit-session {
+  padding: 16px;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 16px;
+}
+.edit-session .edit-session-content {
+  background-color: rgba(0,0,0,0.2);
+  padding: 8px 24px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.edit-session .edit-session-content .edit-session-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+}
+.edit-session .edit-session-content .edit-session-input div {
+  white-space: nowrap;
+}
+.edit-session .edit-session-content .edit-session-input input {
+  margin-left: 10%;
+  border-radius: 8px;
+  padding-left: 3px;
+}

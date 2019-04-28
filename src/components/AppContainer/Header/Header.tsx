@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./Header.css";
 import { HeaderProps } from "./types";
+import "./Header.css";
 
 const Header: React.FC<HeaderProps> = props => {
   return (
