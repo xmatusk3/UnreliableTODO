@@ -12,7 +12,7 @@ const AppContainer: React.FC = () => {
     isEditMode ? (
       <EditSession cancelCallback={() => setEditMode(false)} />
     ) : (
-      <TodoList />
+      <TodoList addSessionCallback={() => setEditMode(true)} />
     );
 
   return (

@@ -7,6 +7,10 @@ import {
 } from "../../../actions/items";
 import { TodoItem } from "../TodoItem/types";
 
+export interface TodoListComponentProps {
+  readonly addSessionCallback: () => void;
+}
+
 export interface TodoListReduxProps {
   readonly items: ItemsState;
   readonly sessionExists: boolean;
@@ -20,3 +24,7 @@ export interface TodoListState {
   readonly isAdding: boolean;
   readonly filter: (item: TodoItem) => boolean;
 }
+
+export interface TodoListProps
+  extends TodoListComponentProps,
+    TodoListReduxProps {}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { TodoState } from "../../../reducers/types";
-import { TodoListReduxProps, TodoListState } from "./types";
+import { TodoListState, TodoListProps } from "./types";
 import TodoItem from "../TodoItem/TodoItem";
 import {
   editItem,
@@ -14,7 +14,7 @@ import "./TodoList.css";
 import { TodoItemPriorityEnum } from "../TodoItem/types";
 import TodoFilter from "../TodoFilter/TodoFilter";
 
-class TodoList extends Component<TodoListReduxProps, TodoListState> {
+class TodoList extends Component<TodoListProps, TodoListState> {
   constructor(props: any) {
     super(props);
 
@@ -85,7 +85,16 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
 
   render() {
     if (!this.props.sessionExists) {
-      return <div>Plusko placeholder</div>;
+      return (
+        <div className="todo-list">
+          <div className="todo-list-add" title="Add new session">
+            <i
+              className="fas fa-plus"
+              onClick={this.props.addSessionCallback}
+            />
+          </div>
+        </div>
+      );
     }
 
     const items = this.renderItems();
