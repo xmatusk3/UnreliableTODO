@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   border-radius: 16px;
-  padding: 20px;
+  padding: 10px;
   margin: 5px 0;
 }
 .todo-item-container[item-priority="5"] {
