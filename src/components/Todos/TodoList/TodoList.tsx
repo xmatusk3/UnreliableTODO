@@ -84,6 +84,7 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
     );
 
   render() {
+    const items = this.renderItems();
     return (
       <div className="todo-list">
         <div className="todo-list-add" title="Add new task">
@@ -96,7 +97,7 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
               this.setState({ filter })
             }
           />
-          {this.renderItems()}
+          {items.length ? items : "No tasks created. Please create one!"}
         </div>
       </div>
     );
