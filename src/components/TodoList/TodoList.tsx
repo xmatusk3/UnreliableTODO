@@ -12,13 +12,15 @@ import {
 } from "../../actions/items";
 import "./TodoList.css";
 import { TodoItemPriorityEnum } from "../TodoItem/types";
+import TodoFilter from "../TodoFilter/TodoFilter";
 
 class TodoList extends Component<TodoListReduxProps, TodoListState> {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      isAdding: false
+      isAdding: false,
+      filter: () => true
     };
   }
 
@@ -38,19 +40,27 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
     this.toggleAdd();
   };
 
+  onDeleteItem = (id: string) => {
+    if (window.confirm("Are you sure you want to delete the task?")) {
+      this.props.deleteItem(id);
+    }
+  };
+
   renderItems() {
-    return Object.values(this.props.items).map(item => (
-      <TodoItem
-        priority={item.priority}
-        text={item.text}
-        key={item.id}
-        id={item.id}
-        isCompleted={item.isCompleted}
-        editCallback={this.props.editItem}
-        completeCallback={this.props.completeItem}
-        deleteCallback={this.props.deleteItem}
-      />
-    ));
+    return Object.values(this.props.items)
+      .filter(this.state.filter)
+      .map(item => (
+        <TodoItem
+          priority={item.priority}
+          text={item.text}
+          key={item.id}
+          id={item.id}
+          isCompleted={item.isCompleted}
+          editCallback={this.props.editItem}
+          completeCallback={this.props.completeItem}
+          deleteCallback={this.onDeleteItem}
+        />
+      ));
   }
 
   renderAddItem = () =>
@@ -78,6 +88,11 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
         </div>
         <div>
           {this.renderAddItem()}
+          <TodoFilter
+            onApply={(filter: TodoListState["filter"]) =>
+              this.setState({ filter })
+            }
+          />
           {this.renderItems()}
         </div>
       </div>

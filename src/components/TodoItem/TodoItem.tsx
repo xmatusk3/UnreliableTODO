@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./TodoItem.css";
 import { TodoItemProps, TodoItemPriorityEnum } from "./types";
 import ItemActions from "../ItemActions/ItemActions";
+import DropDownList from "../DropDownList/DropDownList";
+import { getPriorityDDLValues } from "../../utils";
 
 const TodoItem: React.FC<TodoItemProps> = props => {
   const [isEditMode, setEditMode] = useState(!!props.editModeOnly);
@@ -37,16 +39,11 @@ const TodoItem: React.FC<TodoItemProps> = props => {
       />
       <div className="todo-item-edit-priority">
         Priority:
-        <select
+        <DropDownList
           onChange={event => setPriority(parseInt(event.target.value))}
-          value={priority}
-        >
-          <option value={TodoItemPriorityEnum.Highest}>Highest</option>
-          <option value={TodoItemPriorityEnum.Higher}>Higher</option>
-          <option value={TodoItemPriorityEnum.Medium}>Medium</option>
-          <option value={TodoItemPriorityEnum.Lower}>Lower</option>
-          <option value={TodoItemPriorityEnum.Lowest}>Lowest</option>
-        </select>
+          defaultValue={`${priority}`}
+          valueTextMap={getPriorityDDLValues()}
+        />
       </div>
     </div>
   );

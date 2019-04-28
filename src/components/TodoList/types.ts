@@ -5,6 +5,7 @@ import {
   editItem,
   addItem
 } from "../../actions/items";
+import { TodoItem } from "../TodoItem/types";
 
 export interface TodoListReduxProps {
   readonly items: ItemsState;
@@ -16,4 +17,5 @@ export interface TodoListReduxProps {
 
 export interface TodoListState {
   readonly isAdding: boolean;
+  readonly filter: (item: TodoItem) => boolean;
 }

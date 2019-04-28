@@ -1,7 +1,7 @@
 export interface TodoItemProps {
+  readonly priority: TodoItemPriorityEnum;
   readonly id?: string;
   readonly text?: string;
-  readonly priority?: TodoItemPriorityEnum;
   readonly isCompleted?: boolean;
   readonly editModeOnly?: boolean;
   readonly editCallback: Function;
