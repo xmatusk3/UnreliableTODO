@@ -4,10 +4,10 @@ import "./ItemActions.css";
 
 const ItemActions: React.FC<ItemActionsProps> = props => {
   return (
-    <div className="todo-item-actions">
+    <div className="item-actions">
       {props.completeCallback && (
         <div
-          className="todo-item-complete"
+          className="item-complete"
           title={props.completeTitle}
           onClick={() => (props.completeCallback as Function)()}
         >
@@ -16,7 +16,7 @@ const ItemActions: React.FC<ItemActionsProps> = props => {
       )}
       {props.editCallback && (
         <div
-          className="todo-item-edit"
+          className="item-edit"
           title={props.editTitle}
           onClick={() => (props.editCallback as Function)()}
         >
@@ -25,7 +25,7 @@ const ItemActions: React.FC<ItemActionsProps> = props => {
       )}
       {props.deleteCallback && (
         <div
-          className="todo-item-delete"
+          className="item-delete"
           title={props.deleteTitle}
           onClick={() => (props.deleteCallback as Function)()}
         >

@@ -24,9 +24,12 @@
 .todo-item-container[is-completed="true"] {
   background-color: #7c7c7c;
 }
-.todo-item-container:hover .todo-item-actions {
+.todo-item-container:not([is-edit="true"]):hover .item-actions {
   visibility: visible;
   animation: fadein 0.75s;
+}
+.todo-item-container[is-edit="true"] .item-actions {
+  visibility: visible;
 }
 @-moz-keyframes fadein {
   0% {
@@ -64,6 +67,29 @@
   align-self: center;
   color: #fff;
   word-wrap: break-word;
-  overflow: ellipsis;
+  text-overflow: ellipsis;
   width: 90%;
+}
+.todo-item-edit {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 10px;
+  flex-grow: 1;
+  color: #fff;
+}
+.todo-item-edit .todo-item-edit-text {
+  width: 100%;
+  border-radius: 10px;
+  padding: 3px 7px;
+  margin-bottom: 10px;
+}
+.todo-item-edit .todo-item-edit-priority {
+  font-weight: bold;
+  margin-left: 5px;
+}
+.todo-item-edit .todo-item-edit-priority select {
+  margin-left: 5px;
+  border-radius: 10px;
+  padding: 0 3px;
 }

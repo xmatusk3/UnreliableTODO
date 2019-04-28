@@ -35,17 +35,47 @@
     100% { opacity: 0.8; }
   }
 
-  &:hover .todo-item-actions {
+  &:not([is-edit="true"]):hover .item-actions {
     visibility: visible;
 
     animation: fadein 0.75s;
+  }
+
+  &[is-edit="true"] .item-actions {
+    visibility: visible;
   }
 }
 
 .todo-item-text {
   align-self: center;
-  color: white;  
+  color: #fff;  
   word-wrap: break-word;
-  overflow: ellipsis;
+  text-overflow: ellipsis;
   width: 90%;
+}
+
+.todo-item-edit {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: 10px;
+  flex-grow: 1;
+  color: #fff;
+
+  .todo-item-edit-text {
+    width: 100%;
+    border-radius: 10px;
+    padding: 3px 7px;
+    margin-bottom: 10px;
+  }
+
+  .todo-item-edit-priority {
+    font-weight: bold;
+    margin-left: 5px;
+    select {
+      margin-left: 5px;
+      border-radius: 10px;
+      padding: 0 3px;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-.todo-item-actions {
+.item-actions {
   display: flex;
   width: 10%;
   justify-content: space-between;
@@ -8,16 +8,16 @@
   font-size: 20px;
   opacity: 0.8;
 }
-.todo-item-actions div:hover {
+.item-actions div:hover {
   opacity: 0.5;
   cursor: pointer;
 }
-.todo-item-actions .todo-item-complete {
+.item-actions .item-complete {
   color: #fff;
 }
-.todo-item-actions .todo-item-edit {
+.item-actions .item-edit {
   color: #fff;
 }
-.todo-item-actions .todo-item-delete {
+.item-actions .item-delete {
   color: #fff;
 }
