@@ -1,4 +1,4 @@
-import { TodoItem } from "../../components/TodoItem/types";
+import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
 
 export const COMPLETE_ITEM = "COMPLETE_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
@@ -15,7 +15,8 @@ export interface EditItemAction {
   readonly type: typeof EDIT_ITEM;
   readonly payload: {
     readonly id: string;
-    readonly item: TodoItem;
+    readonly text: string;
+    readonly priority: TodoItemPriorityEnum;
   };
 }
 

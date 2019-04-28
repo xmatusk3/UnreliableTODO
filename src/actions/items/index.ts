@@ -6,7 +6,7 @@ import {
   DeleteItemAction,
   DELETE_ITEM
 } from "./types";
-import { TodoItem } from "../../components/TodoItem/types";
+import { TodoItemPriorityEnum } from "../../components/TodoItem/types";
 
 export const completeItem = (id: string) =>
   ({
@@ -16,12 +16,17 @@ export const completeItem = (id: string) =>
     }
   } as CompleteItemAction);
 
-export const editItem = (id: string, item: TodoItem) =>
+export const editItem = (
+  id: string,
+  text: string,
+  priority: TodoItemPriorityEnum
+) =>
   ({
     type: EDIT_ITEM,
     payload: {
       id,
-      item
+      text,
+      priority
     }
   } as EditItemAction);
 

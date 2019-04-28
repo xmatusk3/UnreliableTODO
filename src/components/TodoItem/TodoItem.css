@@ -21,6 +21,9 @@
 .todo-item-container[item-priority="1"] {
   background-color: #23cc23;
 }
+.todo-item-container[is-completed="true"] {
+  background-color: #7c7c7c;
+}
 .todo-item-container:hover .todo-item-actions {
   visibility: visible;
   animation: fadein 0.75s;
@@ -63,27 +66,4 @@
   word-wrap: break-word;
   overflow: ellipsis;
   width: 90%;
-}
-.todo-item-actions {
-  display: flex;
-  width: 10%;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  visibility: hidden;
-  align-self: center;
-  font-size: 20px;
-  opacity: 0.8;
-}
-.todo-item-actions div:hover {
-  opacity: 0.5;
-  cursor: pointer;
-}
-.todo-item-actions .todo-item-complete {
-  color: #fff;
-}
-.todo-item-actions .todo-item-edit {
-  color: #fff;
-}
-.todo-item-actions .todo-item-delete {
-  color: #fff;
 }

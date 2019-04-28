@@ -67,7 +67,8 @@ const itemsReducer: Reducer<ItemsState, ItemsActionTypes> = (
       return {
         ...state,
         [payload.id]: {
-          ...state[payload.id]
+          ...state[payload.id],
+          isCompleted: true
         }
       };
     case EDIT_ITEM:
@@ -75,7 +76,8 @@ const itemsReducer: Reducer<ItemsState, ItemsActionTypes> = (
         ...state,
         [payload.id]: {
           ...state[payload.id],
-          ...(payload as EditItemAction["payload"]).item
+          text: (payload as EditItemAction["payload"]).text,
+          priority: (payload as EditItemAction["payload"]).priority
         }
       };
     case DELETE_ITEM:

@@ -4,6 +4,7 @@ export interface TodoItemProps {
   readonly id: string;
   readonly text: string;
   readonly priority: TodoItemPriorityEnum;
+  readonly isCompleted: boolean;
   readonly editCallback: typeof editItem;
   readonly completeCallback: typeof completeItem;
   readonly deleteCallback: typeof deleteItem;

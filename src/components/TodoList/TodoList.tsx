@@ -15,6 +15,7 @@ class TodoList extends Component<TodoListReduxProps> {
         text={item.text}
         key={item.id}
         id={item.id}
+        isCompleted={item.isCompleted}
         editCallback={this.props.editItem}
         completeCallback={this.props.completeItem}
         deleteCallback={this.props.deleteItem}
