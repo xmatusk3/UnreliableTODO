@@ -84,6 +84,10 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
     );
 
   render() {
+    if (!this.props.sessionExists) {
+      return <div>Plusko placeholder</div>;
+    }
+
     const items = this.renderItems();
     return (
       <div className="todo-list">
@@ -105,8 +109,9 @@ class TodoList extends Component<TodoListReduxProps, TodoListState> {
 }
 
 export default connect(
-  ({ items }: TodoState) => ({
-    items
+  ({ items, session }: TodoState) => ({
+    items,
+    sessionExists: !!session.sessionId
   }),
   { editItem, deleteItem, completeItem, addItem }
 )(TodoList);

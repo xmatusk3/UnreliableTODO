@@ -9,6 +9,7 @@ import { TodoItem } from "../TodoItem/types";
 
 export interface TodoListReduxProps {
   readonly items: ItemsState;
+  readonly sessionExists: boolean;
   readonly deleteItem: typeof deleteItem;
   readonly completeItem: typeof completeItem;
   readonly editItem: typeof editItem;
