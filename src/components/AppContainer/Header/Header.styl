@@ -21,7 +21,11 @@
     }
   }
 
-  .header-edit {
+
+  .header-actions {
+    display: flex;
+    flex-direction: row;
+
     i {
       font-size: 112px;  
       color: rgba(0,0,0,0.7);
@@ -29,6 +33,10 @@
 
       &:hover {
         color: rgba(0,0,0,0.4);
+      }
+
+      &:last-child {
+        margin-left: 10%;  
       }
     }
   }

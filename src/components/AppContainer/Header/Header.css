@@ -18,11 +18,18 @@
   pointer-events: none;
   user-select: none;
 }
-.header .header-edit i {
+.header .header-actions {
+  display: flex;
+  flex-direction: row;
+}
+.header .header-actions i {
   font-size: 112px;
   color: rgba(0,0,0,0.7);
   cursor: pointer;
 }
-.header .header-edit i:hover {
+.header .header-actions i:hover {
   color: rgba(0,0,0,0.4);
+}
+.header .header-actions i:last-child {
+  margin-left: 10%;
 }
