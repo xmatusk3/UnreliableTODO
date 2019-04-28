@@ -1,7 +1,10 @@
 import { combineReducers, Reducer } from "redux";
 
-const rootReducer: Reducer = combineReducers({
-  state: (state = {}) => state
+import itemsReducer from "./items";
+import { TodoState, TodoActionTypes } from "./types";
+
+const rootReducer: Reducer<TodoState, TodoActionTypes> = combineReducers({
+  items: itemsReducer
 });
 
 export default rootReducer;

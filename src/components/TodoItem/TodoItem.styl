@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 0;
-  margin-right: 0;
-  width: 60%;
   border-radius: 16px;
   padding: 20px;
+  margin: 5px 0;
 
   &[item-priority="5"] {
     background-color: #cc0606;  
@@ -45,7 +43,7 @@
   color: white;  
   word-wrap: break-word;
   overflow: ellipsis;
-  max-width: 90%;
+  width: 90%;
 }
 
 .todo-item-actions {
@@ -56,7 +54,6 @@
   visibility: hidden;
   align-self: center;
   font-size: 20px;
-  margin-left: 16px;
   opacity: 0.8;
 
   div:hover {
