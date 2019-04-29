@@ -8,8 +8,7 @@ import { TodoState } from "../../../reducers/types";
 
 class Header extends Component<HeaderProps> {
   onDelete = () => {
-    this.props.onDeleteClick();
-    this.props.editSession();
+    this.props.editSession(this.props.onDeleteClick);
   };
 
   render() {

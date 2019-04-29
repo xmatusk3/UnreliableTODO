@@ -2,7 +2,7 @@ import { SessionState } from "./types";
 import { Reducer } from "redux";
 import { EDIT_SESSION, SessionActionTypes } from "../../actions/session/types";
 
-const INIT_STATE: SessionState = { sessionId: "Session!", errorRate: 50 };
+const INIT_STATE: SessionState = {};
 
 const sessionReducer: Reducer<SessionState, SessionActionTypes> = (
   state = INIT_STATE,

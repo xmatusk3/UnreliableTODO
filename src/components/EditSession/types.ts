@@ -1,4 +1,3 @@
-import { editSession } from "../../actions";
 import { Session } from "../../actions/session/types";
 
 interface EditSessionComponentProps {
@@ -10,7 +9,7 @@ interface EditSessionReduxProps {
 }
 
 interface EditSessionActions {
-  readonly editSession: typeof editSession;
+  readonly editSession: (successCallback: () => void, session: Session) => void;
 }
 
 export interface EditSessionState {

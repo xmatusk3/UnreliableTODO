@@ -8,6 +8,8 @@ import { editMessage } from "../../../actions";
 import "./Message.css";
 
 class Message extends Component<MessageProps> {
+  timeoutId: number = 0;
+
   componentDidUpdate() {
     this.clearMessage();
   }
@@ -21,7 +23,8 @@ class Message extends Component<MessageProps> {
       this.props.type !== undefined &&
       this.props.type !== MessageTypeEnum.Loading
     ) {
-      setTimeout(() => this.props.editMessage(), 5000);
+      clearTimeout(this.timeoutId);
+      this.timeoutId = setTimeout(() => this.props.editMessage(), 5000) as any;
     }
   };
 

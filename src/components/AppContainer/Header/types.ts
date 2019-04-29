@@ -1,4 +1,5 @@
 import { editSession } from "../../../actions";
+import { Session } from "../../../actions/session/types";
 
 export interface HeaderComponentProps {
   readonly onEditClick: () => void;
@@ -10,7 +11,10 @@ export interface HeaderReduxProps {
 }
 
 export interface HeaderActions {
-  readonly editSession: typeof editSession;
+  readonly editSession: (
+    successCallback: () => void,
+    session?: Session
+  ) => void;
 }
 
 export interface HeaderProps

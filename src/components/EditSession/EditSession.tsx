@@ -19,13 +19,10 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
   }
 
   onComplete = () => {
-    this.props.editSession({
+    this.props.editSession(this.props.cancelCallback, {
       ...this.props.session,
-      errorRate: this.state.errorRate,
-      // TODO remove after thunks are implemented
-      sessionId: "aaa"
+      errorRate: this.state.errorRate
     });
-    this.props.cancelCallback();
   };
 
   render() {
