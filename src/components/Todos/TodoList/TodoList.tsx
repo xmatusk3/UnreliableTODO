@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { TodoState } from "../../../reducers/types";
-import { TodoListState, TodoListProps } from "./types";
+import {
+  TodoListState,
+  TodoListProps,
+  TodoListReduxProps,
+  TodoListActions
+} from "./types";
 import TodoItem from "../TodoItem/TodoItem";
 import {
   editItem,
@@ -118,9 +123,10 @@ class TodoList extends Component<TodoListProps, TodoListState> {
 }
 
 export default connect(
-  ({ items, session }: TodoState) => ({
-    items,
-    sessionExists: !!session.sessionId
-  }),
-  { editItem, deleteItem, completeItem, addItem }
+  ({ items, session }: TodoState) =>
+    ({
+      items,
+      sessionExists: !!session.sessionId
+    } as TodoListReduxProps),
+  { editItem, deleteItem, completeItem, addItem } as TodoListActions
 )(TodoList);

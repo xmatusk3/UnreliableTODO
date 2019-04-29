@@ -4,6 +4,7 @@ import TodoList from "../Todos/TodoList/TodoList";
 import "./AppContainer.css";
 import Header from "./Header/Header";
 import EditSession from "../EditSession/EditSession";
+import Message from "./Message/Message";
 
 const AppContainer: React.FC = () => {
   const [isEditMode, setEditMode] = useState(false);
@@ -21,6 +22,7 @@ const AppContainer: React.FC = () => {
         onEditClick={() => setEditMode(true)}
         onDeleteClick={() => setEditMode(false)}
       />
+      <Message />
       {renderContent()}
     </div>
   );

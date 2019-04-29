@@ -14,6 +14,9 @@ export interface TodoListComponentProps {
 export interface TodoListReduxProps {
   readonly items: ItemsState;
   readonly sessionExists: boolean;
+}
+
+export interface TodoListActions {
   readonly deleteItem: typeof deleteItem;
   readonly completeItem: typeof completeItem;
   readonly editItem: typeof editItem;
@@ -27,4 +30,5 @@ export interface TodoListState {
 
 export interface TodoListProps
   extends TodoListComponentProps,
-    TodoListReduxProps {}
+    TodoListReduxProps,
+    TodoListActions {}

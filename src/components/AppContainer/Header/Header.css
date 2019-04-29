@@ -21,6 +21,8 @@
 .header .header-actions {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  width: 30%;
 }
 .header .header-actions i {
   font-size: 112px;
@@ -29,7 +31,4 @@
 }
 .header .header-actions i:hover {
   color: rgba(0,0,0,0.4);
-}
-.header .header-actions i:last-child {
-  margin-left: 10%;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { HeaderProps } from "./types";
+import { HeaderProps, HeaderReduxProps, HeaderActions } from "./types";
 import { editSession } from "../../../actions";
 import "./Header.css";
 import { TodoState } from "../../../reducers/types";
@@ -39,8 +39,9 @@ class Header extends Component<HeaderProps> {
 }
 
 export default connect(
-  ({ session }: TodoState) => ({
-    sessionExists: !!session.sessionId
-  }),
-  { editSession }
+  ({ session }: TodoState) =>
+    ({
+      sessionExists: !!session.sessionId
+    } as HeaderReduxProps),
+  { editSession } as HeaderActions
 )(Header);

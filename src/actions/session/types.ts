@@ -8,7 +8,7 @@ export interface Session {
 
 export interface EditSessionAction {
   readonly type: typeof EDIT_SESSION;
-  readonly payload: Session;
+  readonly payload?: Session;
 }
 
 export type SessionActionTypes = EditSessionAction;

@@ -1,0 +1,69 @@
+.message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  padding: 36px 0;
+  margin-bottom: 16px;
+}
+.message .message-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.message .message-content i {
+  margin-right: 16px;
+  font-size: 32px;
+}
+.message[message-type] {
+  visibility: visible;
+  border: 1px solid;
+}
+.message[message-type][message-type="Error"] {
+  background-color: rgba(255,0,0,0.2);
+  border-color: #f00;
+}
+.message[message-type][message-type="Success"] {
+  background-color: rgba(0,200,0,0.2);
+  border-color: rgba(0,200,0,0.8);
+}
+.message[message-type][message-type="Loading"] {
+  background-color: rgba(0,0,255,0.2);
+  border-color: rgba(0,0,150,0.8);
+}
+.message[message-type][message-type="Loading"] i {
+  animation: spin 1.5s infinite;
+}
+@-moz-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
