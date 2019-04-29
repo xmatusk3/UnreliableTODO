@@ -8,6 +8,23 @@ import { editMessage } from "../../../actions";
 import "./Message.css";
 
 class Message extends Component<MessageProps> {
+  componentDidUpdate() {
+    this.clearMessage();
+  }
+
+  componentDidMount() {
+    this.clearMessage();
+  }
+
+  clearMessage = () => {
+    if (
+      this.props.type !== undefined &&
+      this.props.type !== MessageTypeEnum.Loading
+    ) {
+      setTimeout(() => this.props.editMessage(), 5000);
+    }
+  };
+
   getIconClass = () => {
     switch (this.props.type) {
       case MessageTypeEnum.Success: {
