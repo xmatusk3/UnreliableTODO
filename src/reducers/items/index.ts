@@ -37,7 +37,7 @@ const itemsReducer: Reducer<ItemsState, TodoActionTypes> = (
     case DELETE_ITEM:
       return _.omit(state, (payload as ItemsActionTypes["payload"]).id);
     case EDIT_SESSION:
-      return { ...INIT_STATE };
+      return payload ? state : { ...INIT_STATE };
     default:
       return state;
   }
