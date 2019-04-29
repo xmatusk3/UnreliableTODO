@@ -9,14 +9,12 @@ import {
   TodoListActions
 } from "./types";
 import TodoItem from "../TodoItem/TodoItem";
-import {
-  editItem,
-  completeItem,
-  deleteItem,
-  addItem
-} from "../../../actions/items";
+import { editItem, deleteItem, addItem } from "../../../actions/items";
 import "./TodoList.css";
-import { TodoItemPriorityEnum } from "../TodoItem/types";
+import {
+  TodoItemPriorityEnum,
+  TodoItem as TodoItemInterface
+} from "../TodoItem/types";
 import TodoFilter from "../TodoFilter/TodoFilter";
 
 class TodoList extends Component<TodoListProps, TodoListState> {
@@ -33,17 +31,16 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     this.setState({ isAdding: !this.state.isAdding });
   };
 
-  onAddItem = (text: string, priority: TodoItemPriorityEnum) => {
-    this.props.addItem({
-      created: new Date(Date.now()),
-      updated: new Date(Date.now()),
-      id: `${Date.now()}`,
-      isCompleted: false,
-      priority,
-      text
-    });
-    this.toggleAdd();
+  onAddItem = (item: TodoItemInterface) => {
+    this.props.addItem(item, this.toggleAdd);
   };
+
+  sortItems = (itemA: TodoItemInterface, itemB: TodoItemInterface): number =>
+    itemA.isCompleted
+      ? 1
+      : itemB.isCompleted
+      ? -1
+      : itemB.urgency - itemA.urgency;
 
   onDeleteItem = (id: string) => {
     if (window.confirm("Are you sure you want to delete the task?")) {
@@ -54,18 +51,13 @@ class TodoList extends Component<TodoListProps, TodoListState> {
   renderItems() {
     return Object.values(this.props.items)
       .filter(this.state.filter)
-      .sort((itemA, itemB) =>
-        itemB.isCompleted ? -1 : itemB.priority - itemA.priority
-      )
+      .sort(this.sortItems)
       .map(item => (
         <TodoItem
-          priority={item.priority}
-          text={item.text}
+          item={item}
           key={item.id}
-          id={item.id}
-          isCompleted={item.isCompleted}
           editCallback={this.props.editItem}
-          completeCallback={this.props.completeItem}
+          completeCallback={this.props.editItem}
           deleteCallback={this.onDeleteItem}
         />
       ));
@@ -74,15 +66,17 @@ class TodoList extends Component<TodoListProps, TodoListState> {
   renderAddItem = () =>
     this.state.isAdding && (
       <TodoItem
-        priority={TodoItemPriorityEnum.Medium}
-        text=""
+        item={{
+          urgency: TodoItemPriorityEnum.Medium,
+          created: new Date(),
+          id: "",
+          text: "",
+          isCompleted: false,
+          updated: new Date()
+        }}
         key="addingItem"
-        id=""
         editModeOnly={true}
-        isCompleted={false}
-        editCallback={(_: any, text: string, priority: TodoItemPriorityEnum) =>
-          this.onAddItem(text, priority)
-        }
+        editCallback={(item: TodoItemInterface) => this.onAddItem(item)}
         deleteCallback={this.toggleAdd}
         completeCallback={() => null}
       />
@@ -128,5 +122,5 @@ export default connect(
       items,
       sessionExists: !!session.sessionId
     } as TodoListReduxProps),
-  { editItem, deleteItem, completeItem, addItem } as TodoListActions
+  { editItem, deleteItem, addItem } as TodoListActions
 )(TodoList);

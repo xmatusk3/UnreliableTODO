@@ -1,7 +1,6 @@
 import { APIResponse } from "..";
 
 export const EDIT_SESSION = "EDIT_SESSION";
-export const DELETE_SESSION = "DELETE_SESSION";
 
 export interface Session {
   readonly sessionId: string;

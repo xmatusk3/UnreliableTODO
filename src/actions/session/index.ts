@@ -11,39 +11,44 @@ import {
 import api from "../../api";
 
 export const editSession = (
-  successCallback: () => void,
-  session?: Session
+  session?: Session,
+  successCallback?: () => void
 ): ThunkAction<Promise<void>, TodoState, {}, TodoActionTypes> => async (
   dispatch,
   getState
 ) => {
-  if (!session) {
-    dispatch(editSessionActionCreator());
-    return;
-  }
-
   try {
     setLoadingMessage(dispatch);
 
-    const { data } = getState().session.sessionId
-      ? await api.patch<SessionResponse>(
-          "session",
-          JSON.stringify({ errorRate: session.errorRate }),
-          session.sessionId
-        )
-      : await api.post<SessionResponse>(
-          "session",
-          JSON.stringify({ errorRate: session.errorRate })
-        );
+    if (!session) {
+      // Delete session
+      await api.del("session", getState().session.sessionId as string);
+      dispatch(editSessionActionCreator());
+    } else {
+      let { data } =
+        session.sessionId !== undefined
+          ? //Update session
+            await api.patch<SessionResponse>(
+              "session",
+              JSON.stringify({ errorRate: session.errorRate }),
+              session.sessionId
+            )
+          : // Create session
+            await api.post<SessionResponse>(
+              "session",
+              JSON.stringify({ errorRate: session.errorRate })
+            );
 
-    dispatch(
-      editSessionActionCreator({
-        errorRate: data.errorRate,
-        sessionId: session.sessionId || data.sessionId
-      })
-    );
+      dispatch(
+        editSessionActionCreator({
+          errorRate: data.errorRate,
+          sessionId: session.sessionId || data.sessionId
+        })
+      );
+    }
+
     setSuccessMessage(dispatch, "Operation successful!");
-    successCallback();
+    successCallback && successCallback();
   } catch (e) {
     setErrorMessage(dispatch, "Error, please try again.");
   }

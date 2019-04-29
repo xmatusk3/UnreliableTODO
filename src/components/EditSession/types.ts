@@ -9,7 +9,10 @@ interface EditSessionReduxProps {
 }
 
 interface EditSessionActions {
-  readonly editSession: (successCallback: () => void, session: Session) => void;
+  readonly editSession: (
+    session: Session,
+    successCallback?: () => void
+  ) => void;
 }
 
 export interface EditSessionState {

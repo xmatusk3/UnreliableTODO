@@ -1,10 +1,4 @@
 import { ItemsState } from "../../../reducers/items/types";
-import {
-  deleteItem,
-  completeItem,
-  editItem,
-  addItem
-} from "../../../actions/items";
 import { TodoItem } from "../TodoItem/types";
 
 export interface TodoListComponentProps {
@@ -17,10 +11,9 @@ export interface TodoListReduxProps {
 }
 
 export interface TodoListActions {
-  readonly deleteItem: typeof deleteItem;
-  readonly completeItem: typeof completeItem;
-  readonly editItem: typeof editItem;
-  readonly addItem: typeof addItem;
+  readonly deleteItem: (itemId: string, successCallback?: () => void) => void;
+  readonly editItem: (item: TodoItem, successCallback?: () => void) => void;
+  readonly addItem: (item: TodoItem, successCallback?: () => void) => void;
 }
 
 export interface TodoListState {

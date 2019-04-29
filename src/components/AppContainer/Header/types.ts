@@ -12,8 +12,8 @@ export interface HeaderReduxProps {
 
 export interface HeaderActions {
   readonly editSession: (
-    successCallback: () => void,
-    session?: Session
+    session?: Session,
+    successCallback?: () => void
   ) => void;
 }
 

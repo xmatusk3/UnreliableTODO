@@ -8,23 +8,30 @@ import { getPriorityDDLValues } from "../../../utils";
 
 const TodoItem: React.FC<TodoItemProps> = props => {
   const [isEditMode, setEditMode] = useState(!!props.editModeOnly);
-  const [newText, setNewText] = useState(props.text);
-  const [priority, setPriority] = useState(props.priority);
+  const [newText, setNewText] = useState(props.item.text);
+  const [priority, setPriority] = useState(props.item.urgency);
 
   // Prepare properties
   const editCallback = isEditMode ? undefined : () => setEditMode(true);
   const completeCallback = isEditMode
-    ? () => {
-        props.editCallback(props.id, newText, priority);
-        setEditMode(false);
-      }
-    : () => {
-        props.completeCallback(props.id);
-      };
+    ? () =>
+        props.editCallback(
+          {
+            ...props.item,
+            text: newText,
+            urgency: priority
+          },
+          () => setEditMode(false)
+        )
+    : () =>
+        props.completeCallback({
+          ...props.item,
+          isCompleted: true
+        });
   const deleteCallback =
-    isEditMode && !props.editModeOnly && !props.isCompleted
+    isEditMode && !props.editModeOnly && !props.item.isCompleted
       ? () => setEditMode(false)
-      : () => props.deleteCallback(props.id);
+      : () => props.deleteCallback(props.item.id);
   const completeTitle = isEditMode ? "Finish editing" : "Complete task";
   const deleteTitle = isEditMode ? "Cancel editing" : "Delete task";
 
@@ -51,19 +58,19 @@ const TodoItem: React.FC<TodoItemProps> = props => {
   return (
     <div
       className="todo-item-container"
-      item-priority={isEditMode ? priority : props.priority}
-      is-completed={`${props.isCompleted}`}
+      item-priority={isEditMode ? priority : props.item.urgency}
+      is-completed={`${props.item.isCompleted}`}
       is-edit={`${isEditMode}`}
     >
       {isEditMode ? (
         renderEditFields()
       ) : (
-        <div className="todo-item-text">{props.text}</div>
+        <div className="todo-item-text">{props.item.text}</div>
       )}
 
       <ItemActions
-        editCallback={props.isCompleted ? undefined : editCallback}
-        completeCallback={props.isCompleted ? undefined : completeCallback}
+        editCallback={props.item.isCompleted ? undefined : editCallback}
+        completeCallback={props.item.isCompleted ? undefined : completeCallback}
         deleteCallback={deleteCallback}
         editTitle="Edit task"
         completeTitle={completeTitle}

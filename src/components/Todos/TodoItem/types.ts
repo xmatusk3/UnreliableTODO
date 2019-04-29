@@ -1,8 +1,5 @@
 export interface TodoItemProps {
-  readonly priority: TodoItemPriorityEnum;
-  readonly id?: string;
-  readonly text?: string;
-  readonly isCompleted?: boolean;
+  readonly item: TodoItem;
   readonly editModeOnly?: boolean;
   readonly editCallback: Function;
   readonly completeCallback: Function;
@@ -21,7 +18,7 @@ export interface TodoItem {
   readonly id: string;
   readonly text: string;
   readonly isCompleted: boolean;
-  readonly priority: TodoItemPriorityEnum;
+  readonly urgency: TodoItemPriorityEnum;
   readonly created: Date;
   readonly updated: Date;
 }

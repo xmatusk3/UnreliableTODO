@@ -3,18 +3,18 @@ import { Reducer } from "redux";
 
 import { ItemsState } from "./types";
 import {
-  ItemsActionTypes,
-  COMPLETE_ITEM,
   EDIT_ITEM,
-  EditItemAction,
   DELETE_ITEM,
   ADD_ITEM,
-  AddItemAction
+  AddItemAction,
+  ItemsActionTypes
 } from "../../actions/items/types";
+import { EDIT_SESSION } from "../../actions/session/types";
+import { TodoActionTypes } from "../types";
 
 const INIT_STATE: ItemsState = {};
 
-const itemsReducer: Reducer<ItemsState, ItemsActionTypes> = (
+const itemsReducer: Reducer<ItemsState, TodoActionTypes> = (
   state = INIT_STATE,
   { type, payload }
 ) => {
@@ -22,27 +22,22 @@ const itemsReducer: Reducer<ItemsState, ItemsActionTypes> = (
     case ADD_ITEM:
       return {
         ...state,
-        [payload.id]: { ...(payload as AddItemAction["payload"]) }
-      };
-    case COMPLETE_ITEM:
-      return {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          isCompleted: true
+        [(payload as ItemsActionTypes["payload"]).id]: {
+          ...(payload as AddItemAction["payload"])
         }
       };
     case EDIT_ITEM:
       return {
         ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          text: (payload as EditItemAction["payload"]).text,
-          priority: (payload as EditItemAction["payload"]).priority
+        [(payload as ItemsActionTypes["payload"]).id]: {
+          ...state[(payload as ItemsActionTypes["payload"]).id],
+          ...payload
         }
       };
     case DELETE_ITEM:
-      return _.omit(state, payload.id);
+      return _.omit(state, (payload as ItemsActionTypes["payload"]).id);
+    case EDIT_SESSION:
+      return { ...INIT_STATE };
     default:
       return state;
   }

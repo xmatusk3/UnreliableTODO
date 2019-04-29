@@ -24,7 +24,7 @@ class Message extends Component<MessageProps> {
       this.props.type !== MessageTypeEnum.Loading
     ) {
       clearTimeout(this.timeoutId);
-      this.timeoutId = setTimeout(() => this.props.editMessage(), 5000) as any;
+      this.timeoutId = setTimeout(() => this.props.editMessage(), 3000) as any;
     }
   };
 

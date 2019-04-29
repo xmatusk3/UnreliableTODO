@@ -12,7 +12,7 @@ const TodoFilter: React.FC<TodoFilterProps> = props => {
   ddlData[defaultValue] = defaultValue;
 
   const getFilter = (selected: string) => (item: TodoItem) => {
-    return item.priority === parseInt(selected) || selected === defaultValue;
+    return item.urgency === parseInt(selected) || selected === defaultValue;
   };
 
   return (

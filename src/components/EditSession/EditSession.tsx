@@ -19,10 +19,13 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
   }
 
   onComplete = () => {
-    this.props.editSession(this.props.cancelCallback, {
-      ...this.props.session,
-      errorRate: this.state.errorRate
-    });
+    this.props.editSession(
+      {
+        ...this.props.session,
+        errorRate: this.state.errorRate
+      },
+      this.props.cancelCallback
+    );
   };
 
   render() {
