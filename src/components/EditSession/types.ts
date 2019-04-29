@@ -1,4 +1,5 @@
 import { Session } from "../../actions/session/types";
+import { Message } from "../../actions/message/types";
 
 interface EditSessionComponentProps {
   readonly cancelCallback: () => void;
@@ -9,6 +10,7 @@ interface EditSessionReduxProps {
 }
 
 interface EditSessionActions {
+  readonly editMessage: (message: Message) => void;
   readonly editSession: (
     session: Session,
     successCallback?: () => void

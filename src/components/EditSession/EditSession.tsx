@@ -6,6 +6,8 @@ import { EditSessionProps, EditSessionState } from "./types";
 import { editSession } from "../../actions/session";
 import "./EditSession.css";
 import { TodoState } from "../../reducers/types";
+import { editMessage } from "../../actions";
+import { MessageTypeEnum } from "../../actions/message/types";
 
 class EditSession extends Component<EditSessionProps, EditSessionState> {
   constructor(props: any) {
@@ -28,6 +30,19 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
     );
   };
 
+  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value) || 0;
+
+    if (value >= 0 && value <= 100) {
+      this.setState({ errorRate: value });
+    } else {
+      this.props.editMessage({
+        text: "Error rate must be between 0 and 100",
+        type: MessageTypeEnum.Error
+      });
+    }
+  };
+
   render() {
     return (
       <div className="edit-session">
@@ -39,9 +54,7 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
               min="0"
               max="100"
               value={this.state.errorRate}
-              onChange={event =>
-                this.setState({ errorRate: parseInt(event.target.value) })
-              }
+              onChange={this.onChange}
             />
           </div>
           <ItemActions
@@ -61,5 +74,5 @@ export default connect(
   ({ session }: TodoState) => ({
     session
   }),
-  { editSession }
+  { editSession, editMessage }
 )(EditSession);
