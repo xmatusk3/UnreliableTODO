@@ -49,7 +49,7 @@ export const editSession = (
 
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
-  } catch (e) {
+  } catch {
     setErrorMessage(dispatch, "Error, please try again.");
   }
 };

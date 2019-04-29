@@ -40,7 +40,7 @@ export const addItem = (
     dispatch(addItemActionCreator(data.todo));
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
-  } catch (e) {
+  } catch {
     setErrorMessage(dispatch, "Error, please try again.");
   }
 };
@@ -60,7 +60,7 @@ export const deleteItem = (
     dispatch(deleteItemActionCreator(itemId));
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
-  } catch (e) {
+  } catch {
     setErrorMessage(dispatch, "Error, please try again.");
   }
 };
@@ -88,7 +88,7 @@ export const editItem = (
     dispatch(editItemActionCreator(data.todo));
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
-  } catch (e) {
+  } catch {
     setErrorMessage(dispatch, "Error, please try again.");
   }
 };
