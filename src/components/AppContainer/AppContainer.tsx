@@ -18,10 +18,7 @@ const AppContainer: React.FC = () => {
 
   return (
     <div className="app-container">
-      <Header
-        onEditClick={() => setEditMode(true)}
-        onDeleteClick={() => setEditMode(false)}
-      />
+      <Header onEditClick={() => setEditMode(true)} />
       <Message />
       {renderContent()}
     </div>

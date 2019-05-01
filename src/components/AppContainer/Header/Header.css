@@ -19,16 +19,24 @@
   user-select: none;
 }
 .header .header-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 30%;
+  width: 12.5%;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 20px;
+  padding: 7px 0;
 }
-.header .header-actions i {
-  font-size: 112px;
+.header .header-actions .header-actions-text {
+  font-size: 20px;
+  color: rgba(0,0,0,0.8);
+  text-align: center;
+}
+.header .header-actions .header-actions-buttons {
+  text-align: center;
+}
+.header .header-actions .header-actions-buttons i {
+  font-size: 80px;
   color: rgba(0,0,0,0.7);
   cursor: pointer;
 }
-.header .header-actions i:hover {
+.header .header-actions .header-actions-buttons i:hover {
   color: rgba(0,0,0,0.4);
 }
