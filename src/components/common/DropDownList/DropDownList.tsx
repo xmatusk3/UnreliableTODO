@@ -6,11 +6,15 @@ import "./DropDownList.css";
 const DropDownList: React.FC<DropDownListProps> = props => {
   return (
     <select onChange={props.onChange} defaultValue={props.defaultValue}>
-      {Object.keys(props.valueTextMap).map(key => (
-        <option key={key} value={key}>
-          {props.valueTextMap[key]}
-        </option>
-      ))}
+      {Object.keys(props.valueTextMap)
+        .sort(
+          (priorityA, priorityB) => parseInt(priorityB) - parseInt(priorityA)
+        )
+        .map(key => (
+          <option key={key} value={key}>
+            {props.valueTextMap[key]}
+          </option>
+        ))}
     </select>
   );
 };
