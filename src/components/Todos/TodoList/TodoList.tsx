@@ -8,14 +8,14 @@ import {
   TodoListReduxProps,
   TodoListActions
 } from "./types";
-import TodoItem from "../TodoItem/TodoItem";
 import { editItem, deleteItem, addItem } from "../../../actions/items";
 import "./TodoList.css";
-import {
-  TodoItemPriorityEnum,
-  TodoItem as TodoItemInterface
-} from "../TodoItem/types";
 import TodoFilter from "../TodoFilter/TodoFilter";
+import {
+  TodoItem as TodoItemInterface,
+  TodoItemPriorityEnum
+} from "../../../actions/items/types";
+import TodoItemContainer from "../TodoItemContainer/TodoItemContainer";
 
 class TodoList extends Component<TodoListProps, TodoListState> {
   constructor(props: any) {
@@ -53,7 +53,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
       .filter(this.state.filter)
       .sort(this.sortItems)
       .map(item => (
-        <TodoItem
+        <TodoItemContainer
           item={item}
           key={item.id}
           editCallback={this.props.editItem}
@@ -65,7 +65,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
 
   renderAddItem = () =>
     this.state.isAdding && (
-      <TodoItem
+      <TodoItemContainer
         item={{
           urgency: TodoItemPriorityEnum.Medium,
           created: new Date(),

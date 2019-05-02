@@ -1,5 +1,5 @@
 import { ItemsState } from "../../../reducers/items/types";
-import { TodoItem } from "../TodoItem/types";
+import { TodoItem } from "../../../actions/items/types";
 
 export interface TodoListComponentProps {
   readonly addSessionCallback: () => void;

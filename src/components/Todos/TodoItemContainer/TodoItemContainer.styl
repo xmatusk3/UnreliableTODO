@@ -1,0 +1,32 @@
+.todo-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0;
+
+  &[item-priority="5"] {
+    background-color: #db2828;  
+  }
+
+  &[item-priority="4"] {
+    background-color: #f2711c;  
+  }
+
+  &[item-priority="3"] {
+    background-color: #fbbd08;  
+  }
+
+  &[item-priority="2"] {
+    background-color: #21ba45;  
+  }
+
+  &[item-priority="1"] {
+    background-color: #b5cc18;  
+  }
+
+  &[is-completed="true"] {
+    background-color: #A0A0A0
+  }
+}

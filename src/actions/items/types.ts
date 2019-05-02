@@ -1,4 +1,3 @@
-import { TodoItem } from "../../components/Todos/TodoItem/types";
 import { APIResponse } from "..";
 
 export const ADD_ITEM = "ADD_ITEM";
@@ -20,6 +19,23 @@ export interface DeleteItemAction {
   readonly payload: {
     readonly id: string;
   };
+}
+
+export interface TodoItem {
+  readonly id: string;
+  readonly text: string;
+  readonly isCompleted: boolean;
+  readonly urgency: TodoItemPriorityEnum;
+  readonly created: Date;
+  readonly updated: Date;
+}
+
+export enum TodoItemPriorityEnum {
+  Lowest = 1,
+  Lower = 2,
+  Medium = 3,
+  Higher = 4,
+  Highest = 5
 }
 
 export interface ItemResponse extends APIResponse {

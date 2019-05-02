@@ -1,8 +1,8 @@
 import { Dispatch } from "redux";
 
-import { TodoItemPriorityEnum } from "../components/Todos/TodoItem/types";
 import { editMessage } from "../actions";
 import { MessageTypeEnum } from "../actions/message/types";
+import { TodoItemPriorityEnum } from "../actions/items/types";
 
 export const getPriorityDDLValues: () => { [key: string]: string } = () => {
   const result: { [key: string]: string } = {};

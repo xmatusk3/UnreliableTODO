@@ -5,9 +5,9 @@ import {
   DELETE_ITEM,
   ADD_ITEM,
   ItemResponse,
-  AddItemAction
+  AddItemAction,
+  TodoItem
 } from "./types";
-import { TodoItem } from "../../components/Todos/TodoItem/types";
 import { ThunkAction } from "redux-thunk";
 import { TodoState, TodoActionTypes } from "../../reducers/types";
 import {

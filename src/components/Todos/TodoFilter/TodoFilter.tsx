@@ -4,7 +4,7 @@ import { TodoFilterProps } from "./types";
 import DropDownList from "../../common/DropDownList/DropDownList";
 import { getPriorityDDLValues } from "../../../utils";
 import "./TodoFilter.css";
-import { TodoItem } from "../TodoItem/types";
+import { TodoItem } from "../../../actions/items/types";
 
 const TodoFilter: React.FC<TodoFilterProps> = props => {
   const defaultValue = "Any";

@@ -1,52 +1,8 @@
+
 .todo-item-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-radius: 16px;
-  padding: 10px;
-  margin: 5px 0;
-
-  &[item-priority="5"] {
-    background-color: #B03060;  
-  }
-
-  &[item-priority="4"] {
-    background-color: #FE9A76;  
-  }
-
-  &[item-priority="3"] {
-    background-color: #FFD700;  
-  }
-
-  &[item-priority="2"] {
-    background-color: #32CD32;  
-  }
-
-  &[item-priority="1"] {
-    background-color: #016936;  
-  }
-
-  &[is-completed="true"] {
-    background-color: #A0A0A0
-  }
-
   @keyframes fadein {
     0% { opacity: 0; }
     100% { opacity: 0.8; }
-  }
-
-  .item-actions {
-    visibility: hidden;
-  }
-
-  &:not([is-edit="true"]):hover .item-actions {
-    visibility: visible;
-
-    animation: fadein 0.75s;
-  }
-
-  &[is-edit="true"] .item-actions {
-    visibility: visible;
   }
 
   .todo-item-text {
@@ -57,27 +13,25 @@
     width: 90%;
   }
 
-  .todo-item-edit {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-right: 10px;
-    flex-grow: 1;
-    color: #fff;
+  .item-actions {
+    visibility: hidden;
+  }
 
-    .todo-item-edit-text {
-      width: 100%;
-      border-radius: 10px;
-      padding: 3px 7px;
-      margin-bottom: 10px;
-    }
+  &:hover .item-actions {
+    visibility: visible;
 
-    .todo-item-edit-priority {
-      font-weight: bold;
-      margin-left: 5px;
-      select {
-        margin-left: 5px;
+    animation: fadein 0.75s;
+  }
+
+  &[is-completed="true"] {
+    .item-actions {
+      .item-edit, .item-complete {
+        visibility: hidden;
       }
     }
   }
 }
+
+
+  
+
