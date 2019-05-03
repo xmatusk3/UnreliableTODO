@@ -68,11 +68,11 @@ class TodoList extends Component<TodoListProps, TodoListState> {
       <TodoItemContainer
         item={{
           urgency: TodoItemPriorityEnum.Medium,
-          created: new Date(),
+          created: "",
           id: "",
           text: "",
           isCompleted: false,
-          updated: new Date()
+          updated: ""
         }}
         key="addingItem"
         editModeOnly={true}

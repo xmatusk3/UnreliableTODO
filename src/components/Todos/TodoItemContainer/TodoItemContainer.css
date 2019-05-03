@@ -6,6 +6,9 @@
   padding: 10px;
   margin: 5px 0;
 }
+.todo-item-container.todo-item-container__normal {
+  cursor: pointer;
+}
 .todo-item-container[item-priority="5"] {
   background-color: #db2828;
 }

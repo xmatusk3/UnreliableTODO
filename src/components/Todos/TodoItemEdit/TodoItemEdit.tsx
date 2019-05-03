@@ -21,7 +21,10 @@ const TodoItemEdit: React.FC<TodoItemEditProps> = props => {
     );
 
   return (
-    <div className="todo-item-container" item-priority={priority}>
+    <div
+      className="todo-item-container todo-item-container__edit"
+      item-priority={priority}
+    >
       <div className="todo-item-edit">
         <input
           type="text"

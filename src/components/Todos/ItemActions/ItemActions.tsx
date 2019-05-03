@@ -4,7 +4,7 @@ import "./ItemActions.css";
 
 const ItemActions: React.FC<ItemActionsProps> = props => {
   return (
-    <div className="item-actions">
+    <div className="item-actions" onClick={e => e.stopPropagation()}>
       {props.deleteCallback && (
         <div
           className="item-delete"

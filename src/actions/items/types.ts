@@ -26,8 +26,8 @@ export interface TodoItem {
   readonly text: string;
   readonly isCompleted: boolean;
   readonly urgency: TodoItemPriorityEnum;
-  readonly created: Date;
-  readonly updated: Date;
+  readonly created: string;
+  readonly updated: string;
 }
 
 export enum TodoItemPriorityEnum {

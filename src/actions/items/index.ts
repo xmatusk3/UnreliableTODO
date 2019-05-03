@@ -37,7 +37,7 @@ export const addItem = (
       getState().session.sessionId
     );
 
-    dispatch(addItemActionCreator(data.todo));
+    dispatch(addItemActionCreator(parseItemResponse(data.todo)));
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
   } catch {
@@ -85,7 +85,7 @@ export const editItem = (
       getState().session.sessionId as string
     );
 
-    dispatch(editItemActionCreator(data.todo));
+    dispatch(editItemActionCreator(parseItemResponse(data.todo)));
     setSuccessMessage(dispatch, "Operation successful!");
     successCallback && successCallback();
   } catch {
@@ -112,3 +112,11 @@ const deleteItemActionCreator = (id: string) =>
       id
     }
   } as DeleteItemAction);
+
+const parseItemResponse = (item: TodoItem): TodoItem => {
+  return {
+    ...item,
+    created: new Date(item.created).toLocaleString(),
+    updated: new Date(item.updated).toLocaleString()
+  };
+};
