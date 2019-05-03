@@ -1,10 +1,5 @@
 
 .todo-item-container {
-  @keyframes fadein {
-    0% { opacity: 0; }
-    100% { opacity: 0.8; }
-  }
-
   .todo-item-text {
     align-self: center;
     color: #fff;  
@@ -13,14 +8,21 @@
     width: 90%;
   }
 
-  .item-actions {
-    visibility: hidden;
-  }
+  &.todo-item-container__normal {
+    .item-actions {
+      visibility hidden;
+    }
 
-  &:hover .item-actions {
-    visibility: visible;
+    @keyframes fadein {
+      0% { opacity: 0; }
+      100% { opacity: 0.8; }
+    }
 
-    animation: fadein 0.75s;
+    &:hover .item-actions  {
+      visibility: visible;
+
+      animation: fadein 0.75s;
+    }
   }
 
   &[is-completed="true"] {
