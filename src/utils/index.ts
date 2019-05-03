@@ -20,9 +20,12 @@ export const setErrorMessage = (dispatch: Dispatch, text: string): void => {
   dispatch(editMessage({ type: MessageTypeEnum.Error, text }));
 };
 
-export const setLoadingMessage = (dispatch: Dispatch): void => {
+export const setLoadingMessage = (dispatch: Dispatch, text?: string): void => {
   dispatch(
-    editMessage({ type: MessageTypeEnum.Loading, text: "Handling operation" })
+    editMessage({
+      type: MessageTypeEnum.Loading,
+      text: text || "Handling operation"
+    })
   );
 };
 

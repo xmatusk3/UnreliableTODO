@@ -6,7 +6,10 @@ import {
   ADD_ITEM,
   ItemResponse,
   AddItemAction,
-  TodoItem
+  TodoItem,
+  SAVE_ITEMS,
+  AllItemsResponse,
+  SaveAllItemsAction
 } from "./types";
 import { ThunkAction } from "redux-thunk";
 import { TodoState, TodoActionTypes } from "../../reducers/types";
@@ -16,6 +19,7 @@ import {
   setErrorMessage
 } from "../../utils";
 import api from "../../api";
+import { ItemsState } from "../../reducers/items/types";
 
 export const addItem = (
   item: TodoItem,
@@ -92,6 +96,33 @@ export const editItem = (
     setErrorMessage(dispatch, "Error, please try again.");
   }
 };
+
+export const getAllTodos = (
+  successCallback: () => void
+): ThunkAction<
+  Promise<void>,
+  TodoState,
+  {},
+  TodoActionTypes
+> => async dispatch => {
+  try {
+    setLoadingMessage(dispatch, "Fetching Todo items...");
+    const sessionId = sessionStorage.getItem("sessionId") || "";
+    const { data } = await api.get<AllItemsResponse>("todos", sessionId);
+
+    dispatch(saveTodosActionCreator(data.todos));
+    setSuccessMessage(dispatch, "Items fetched successfully!");
+    successCallback && successCallback();
+  } catch {
+    setErrorMessage(dispatch, "Error, please restart the application.");
+  }
+};
+
+const saveTodosActionCreator = (items: ItemsState) =>
+  ({
+    type: SAVE_ITEMS,
+    payload: items
+  } as SaveAllItemsAction);
 
 const addItemActionCreator = (item: TodoItem) =>
   ({

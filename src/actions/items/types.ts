@@ -1,8 +1,10 @@
 import { APIResponse } from "..";
+import { ItemsState } from "../../reducers/items/types";
 
 export const ADD_ITEM = "ADD_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
 export const DELETE_ITEM = "DELETE_ITEM";
+export const SAVE_ITEMS = "SAVE_ITEMS";
 
 export interface AddItemAction {
   readonly type: typeof ADD_ITEM;
@@ -19,6 +21,11 @@ export interface DeleteItemAction {
   readonly payload: {
     readonly id: string;
   };
+}
+
+export interface SaveAllItemsAction {
+  readonly type: typeof SAVE_ITEMS;
+  readonly payload: ItemsState;
 }
 
 export interface TodoItem {
@@ -39,10 +46,15 @@ export enum TodoItemPriorityEnum {
 }
 
 export interface ItemResponse extends APIResponse {
-  todo: TodoItem;
+  readonly todo: TodoItem;
+}
+
+export interface AllItemsResponse extends APIResponse {
+  readonly todos: ItemsState;
 }
 
 export type ItemsActionTypes =
   | AddItemAction
   | EditItemAction
-  | DeleteItemAction;
+  | DeleteItemAction
+  | SaveAllItemsAction;

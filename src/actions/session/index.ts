@@ -1,4 +1,5 @@
 import { ThunkAction } from "redux-thunk";
+import { AxiosResponse } from "axios";
 
 import { EditSessionAction, EDIT_SESSION, SessionResponse } from "./types";
 import { Session } from "./types";
@@ -27,17 +28,8 @@ export const editSession = (
     } else {
       let { data } =
         session.sessionId !== undefined
-          ? //Update session
-            await api.patch<SessionResponse>(
-              "session",
-              JSON.stringify({ errorRate: session.errorRate }),
-              session.sessionId
-            )
-          : // Create session
-            await api.post<SessionResponse>(
-              "session",
-              JSON.stringify({ errorRate: session.errorRate })
-            );
+          ? await updateSession(session)
+          : await createSession(session.errorRate);
 
       dispatch(
         editSessionActionCreator({
@@ -59,3 +51,18 @@ const editSessionActionCreator = (session?: Session) =>
     type: EDIT_SESSION,
     payload: session
   } as EditSessionAction);
+
+const updateSession = async ({
+  sessionId,
+  errorRate
+}: Session): Promise<AxiosResponse<SessionResponse>> =>
+  await api.patch<SessionResponse>(
+    "session",
+    JSON.stringify({ errorRate }),
+    sessionId
+  );
+
+const createSession = async (
+  errorRate: number
+): Promise<AxiosResponse<SessionResponse>> =>
+  await api.post<SessionResponse>("session", JSON.stringify({ errorRate }));
