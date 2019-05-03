@@ -30,7 +30,7 @@ export const addSession = (
   getState: () => TodoState
 ) => {
   try {
-    setLoadingMessage(dispatch);
+    setLoadingMessage(dispatch, "Adding session...");
     const sessionState = getState().session;
     let { data } = await createSession(errorRate);
 
@@ -48,11 +48,11 @@ export const addSession = (
       })
     );
 
-    setSuccessMessage(dispatch, "Operation successful!");
+    setSuccessMessage(dispatch, "Successfully added the session!");
     successCallback && successCallback();
     getAllTodos(data.sessionId)(dispatch, getState, {});
   } catch {
-    setErrorMessage(dispatch, "Error, please try again.");
+    setErrorMessage(dispatch, "Error, failed to add a session.");
   }
 };
 
@@ -64,7 +64,7 @@ export const editSession = (
   getState: () => TodoState
 ) => {
   try {
-    setLoadingMessage(dispatch);
+    setLoadingMessage(dispatch, "Editing session...");
     const sessionState = getState().session;
 
     if (!session) {
@@ -86,10 +86,10 @@ export const editSession = (
       );
     }
 
-    setSuccessMessage(dispatch, "Operation successful!");
+    setSuccessMessage(dispatch, "Successfully edited the session!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error, please try again.");
+    setErrorMessage(dispatch, "Error, failed to edit the session.");
   }
 };
 

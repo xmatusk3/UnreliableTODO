@@ -20,13 +20,8 @@ export const setErrorMessage = (dispatch: Dispatch, text: string): void => {
   dispatch(editMessage({ type: MessageTypeEnum.Error, text }));
 };
 
-export const setLoadingMessage = (dispatch: Dispatch, text?: string): void => {
-  dispatch(
-    editMessage({
-      type: MessageTypeEnum.Loading,
-      text: text || "Handling operation"
-    })
-  );
+export const setLoadingMessage = (dispatch: Dispatch, text: string): void => {
+  dispatch(editMessage({ type: MessageTypeEnum.Loading, text }));
 };
 
 export const setSuccessMessage = (dispatch: Dispatch, text: string): void => {

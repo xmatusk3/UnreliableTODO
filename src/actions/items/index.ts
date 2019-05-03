@@ -29,7 +29,7 @@ export const addItem = (
   getState
 ) => {
   try {
-    setLoadingMessage(dispatch);
+    setLoadingMessage(dispatch, "Adding item...");
 
     const { data } = await api.post<ItemResponse>(
       "todos",
@@ -42,10 +42,10 @@ export const addItem = (
     );
 
     dispatch(addItemActionCreator(parseItemResponse(data.todo)));
-    setSuccessMessage(dispatch, "Operation successful!");
+    setSuccessMessage(dispatch, "Successfully added the item!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error, please try again.");
+    setErrorMessage(dispatch, "Error, failed to add the item.");
   }
 };
 
@@ -57,15 +57,15 @@ export const deleteItem = (
   getState
 ) => {
   try {
-    setLoadingMessage(dispatch);
+    setLoadingMessage(dispatch, "Deleting item...");
 
     await api.del(`todos/${itemId}`, getState().session.selectedId as string);
 
     dispatch(deleteItemActionCreator(itemId));
-    setSuccessMessage(dispatch, "Operation successful!");
+    setSuccessMessage(dispatch, "Successfully deleted the item!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error, please try again.");
+    setErrorMessage(dispatch, "Error, failed to delete the item.");
   }
 };
 
@@ -77,7 +77,7 @@ export const editItem = (
   getState
 ) => {
   try {
-    setLoadingMessage(dispatch);
+    setLoadingMessage(dispatch, "Editing item...");
 
     const { data } = await api.patch<ItemResponse>(
       `todos/${id}`,
@@ -90,10 +90,10 @@ export const editItem = (
     );
 
     dispatch(editItemActionCreator(parseItemResponse(data.todo)));
-    setSuccessMessage(dispatch, "Operation successful!");
+    setSuccessMessage(dispatch, "Successfully edited the item!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error, please try again.");
+    setErrorMessage(dispatch, "Error, failed to edit the item.");
   }
 };
 
@@ -107,15 +107,15 @@ export const getAllTodos = (
   TodoActionTypes
 > => async dispatch => {
   try {
-    setLoadingMessage(dispatch, "Fetching Todo items...");
+    setLoadingMessage(dispatch, "Fetching items...");
 
     const { data } = await api.get<AllItemsResponse>("todos", sessionId);
 
     dispatch(saveTodosActionCreator(data.todos));
-    setSuccessMessage(dispatch, "Items fetched successfully!");
+    setSuccessMessage(dispatch, "Successfully fetched the items!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error fetching items.");
+    setErrorMessage(dispatch, "Error, failed to fetch the items.");
   }
 };
 
