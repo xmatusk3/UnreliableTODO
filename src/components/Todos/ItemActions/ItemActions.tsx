@@ -32,6 +32,15 @@ const ItemActions: React.FC<ItemActionsProps> = props => {
           <i className="fas fa-check" />
         </div>
       )}
+      {props.addCallback && (
+        <div
+          className="item-add"
+          title={props.addTitle}
+          onClick={() => (props.addCallback as Function)()}
+        >
+          <i className="fas fa-plus" />
+        </div>
+      )}
     </div>
   );
 };

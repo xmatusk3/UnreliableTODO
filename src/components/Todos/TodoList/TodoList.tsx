@@ -9,13 +9,15 @@ import {
   TodoListActions
 } from "./types";
 import { editItem, deleteItem, addItem } from "../../../actions/items";
-import "./TodoList.css";
 import TodoFilter from "../TodoFilter/TodoFilter";
 import {
   TodoItem as TodoItemInterface,
   TodoItemPriorityEnum
 } from "../../../actions/items/types";
 import TodoItemContainer from "../TodoItemContainer/TodoItemContainer";
+import DropDownList from "../../common/DropDownList/DropDownList";
+import ItemActions from "../ItemActions/ItemActions";
+import "./TodoList.css";
 
 class TodoList extends Component<TodoListProps, TodoListState> {
   constructor(props: TodoListProps) {
@@ -82,6 +84,22 @@ class TodoList extends Component<TodoListProps, TodoListState> {
       />
     );
 
+  renderChangeSession = () => (
+    <div className="todo-change-session">
+      Session:
+      <DropDownList
+        valueTextMap={{ val: "session" }}
+        onChange={() => {}}
+        defaultValue={"val"}
+      />
+      <ItemActions
+        addCallback={() => {}}
+        editCallback={() => {}}
+        deleteCallback={() => {}}
+      />
+    </div>
+  );
+
   render() {
     if (!this.props.sessionExists) {
       return (
@@ -100,6 +118,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     const items = this.renderItems();
     return (
       <div className="todo-list">
+        {this.renderChangeSession()}
         <div className="todo-list-add-label">Add a task</div>
         <div className="todo-list-add" title="Add new task">
           <i className="fas fa-plus" onClick={this.toggleAdd} />

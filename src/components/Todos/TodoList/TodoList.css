@@ -32,3 +32,25 @@
   padding: 8px;
   border-radius: 20px;
 }
+.todo-list .todo-change-session {
+  background-color: rgba(0,0,0,0.2);
+  padding: 16px 0;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 20px;
+  width: 100%;
+}
+.todo-list .todo-change-session select {
+  font-size: 20px;
+  width: 70%;
+}
+.todo-list .todo-change-session select option {
+  text-align: center;
+}
+.todo-list .todo-change-session .item-actions i {
+  color: #000;
+}
