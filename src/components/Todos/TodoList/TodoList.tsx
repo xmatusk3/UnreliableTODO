@@ -9,6 +9,7 @@ import {
   TodoListActions
 } from "./types";
 import { editItem, deleteItem, addItem } from "../../../actions/items";
+import { editSession } from "../../../actions/session";
 import TodoFilter from "../TodoFilter/TodoFilter";
 import {
   TodoItem as TodoItemInterface,
@@ -47,6 +48,12 @@ class TodoList extends Component<TodoListProps, TodoListState> {
   onDeleteItem = (id: string) => {
     if (window.confirm("Are you sure you want to delete the task?")) {
       this.props.deleteItem(id);
+    }
+  };
+
+  onDeleteSession = () => {
+    if (window.confirm("Are you sure you want to delete current session?")) {
+      this.props.editSession(undefined);
     }
   };
 
@@ -93,9 +100,12 @@ class TodoList extends Component<TodoListProps, TodoListState> {
         defaultValue={"val"}
       />
       <ItemActions
-        addCallback={() => {}}
-        editCallback={() => {}}
-        deleteCallback={() => {}}
+        addCallback={this.props.onEditCallback}
+        editCallback={this.props.onEditCallback}
+        deleteCallback={this.onDeleteSession}
+        addTitle="Add session"
+        editTitle="Edit session"
+        deleteTitle="Delete session"
       />
     </div>
   );
@@ -106,10 +116,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
         <div className="todo-list">
           <div className="todo-list-add-label">Please create a session</div>
           <div className="todo-list-add" title="Add new session">
-            <i
-              className="fas fa-plus"
-              onClick={this.props.addSessionCallback}
-            />
+            <i className="fas fa-plus" onClick={this.props.onEditCallback} />
           </div>
         </div>
       );
@@ -145,5 +152,5 @@ export default connect(
       items,
       sessionExists: !!session.sessionId
     } as TodoListReduxProps),
-  { editItem, deleteItem, addItem } as TodoListActions
+  { editItem, deleteItem, addItem, editSession } as TodoListActions
 )(TodoList);

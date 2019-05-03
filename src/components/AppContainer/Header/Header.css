@@ -1,8 +1,6 @@
 .header {
   font-size: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  margin-left: 7%;
   align-items: center;
   margin-top: 3vw;
   padding-bottom: 16px;
@@ -17,29 +15,4 @@
 .header .header-text h1 {
   pointer-events: none;
   user-select: none;
-}
-.header .header-actions {
-  width: 200px;
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 20px;
-  padding: 7px 0;
-}
-.header .header-actions .header-actions-text {
-  font-size: 20px;
-  color: rgba(0,0,0,0.8);
-  text-align: center;
-  padding-bottom: 8px;
-}
-.header .header-actions .header-actions-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-.header .header-actions .header-actions-buttons i {
-  font-size: 80px;
-  color: rgba(0,0,0,0.7);
-  cursor: pointer;
-}
-.header .header-actions .header-actions-buttons i:hover {
-  color: rgba(0,0,0,0.4);
 }
