@@ -100,8 +100,6 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     const items = this.renderItems();
     return (
       <div className="todo-list">
-        Change current session:
-        <hr />
         <div className="todo-list-add-label">Add a task</div>
         <div className="todo-list-add" title="Add new task">
           <i className="fas fa-plus" onClick={this.toggleAdd} />
