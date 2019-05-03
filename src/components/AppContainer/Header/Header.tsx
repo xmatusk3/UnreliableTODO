@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { HeaderProps, HeaderReduxProps } from "./types";
+import { HeaderProps, HeaderReduxProps, HeaderActions } from "./types";
+import { editSession } from "../../../actions";
 import "./Header.css";
 import { TodoState } from "../../../reducers/types";
 
 class Header extends Component<HeaderProps> {
+  onDelete = () => {
+    if (window.confirm("Are you sure you want to delete current session?")) {
+      this.props.editSession(undefined, this.props.onDeleteClick);
+    }
+  };
+
   render() {
     return (
       <div className="header">
@@ -19,8 +26,13 @@ class Header extends Component<HeaderProps> {
             <div className="header-actions-buttons">
               <i
                 className="fas fa-cog"
-                title="Manage session"
+                title="Edit session"
                 onClick={this.props.onEditClick}
+              />
+              <i
+                className="fas fa-times"
+                title="Delete session"
+                onClick={this.onDelete}
               />
             </div>
           </div>
@@ -34,5 +46,6 @@ export default connect(
   ({ session }: TodoState) =>
     ({
       sessionExists: !!session.sessionId
-    } as HeaderReduxProps)
+    } as HeaderReduxProps),
+  { editSession } as HeaderActions
 )(Header);

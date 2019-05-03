@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
-  padding: 36px 0;
+  padding: 16px 0;
   margin-bottom: 16px;
 }
 .message .message-content {
@@ -21,16 +21,16 @@
   border: 1px solid;
 }
 .message[message-type][message-type="Error"] {
-  background-color: rgba(255,0,0,0.2);
+  background-color: rgba(255, 0, 0, 0.2);
   border-color: #f00;
 }
 .message[message-type][message-type="Success"] {
-  background-color: rgba(0,200,0,0.2);
-  border-color: rgba(0,200,0,0.8);
+  background-color: rgba(0, 200, 0, 0.2);
+  border-color: rgba(0, 200, 0, 0.8);
 }
 .message[message-type][message-type="Loading"] {
-  background-color: rgba(0,0,255,0.2);
-  border-color: rgba(0,0,150,0.8);
+  background-color: rgba(0, 0, 255, 0.2);
+  border-color: rgba(0, 0, 150, 0.8);
 }
 .message[message-type][message-type="Loading"] i {
   animation: spin 1.5s infinite;
