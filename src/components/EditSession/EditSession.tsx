@@ -10,16 +10,23 @@ import {
 } from "./types";
 import { editSession, addSession } from "../../actions/session";
 import "./EditSession.css";
+import { MessageTypeEnum } from "../../actions/message/types";
 import { TodoState } from "../../reducers/types";
 import { editMessage } from "../../actions";
-import { MessageTypeEnum } from "../../actions/message/types";
 
 class EditSession extends Component<EditSessionProps, EditSessionState> {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      errorRate: this.props.session ? this.props.session.errorRate : 0
+      errorRate:
+        this.props.session && !this.props.isAdding
+          ? this.props.session.errorRate
+          : 0,
+      displayName:
+        this.props.session && !this.props.isAdding
+          ? this.props.session.displayName
+          : ""
     };
   }
 
@@ -27,12 +34,13 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
     this.props.isAdding
       ? this.props.addSession(
           this.state.errorRate,
-          "PLACEHOLDER",
+          this.state.displayName,
           this.props.cancelCallback
         )
       : this.props.editSession(
           {
             ...this.props.session,
+            displayName: this.state.displayName,
             errorRate: this.state.errorRate
           },
           this.props.cancelCallback
@@ -55,7 +63,19 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
   render() {
     return (
       <div className="edit-session">
+        {this.props.isAdding ? "Add new session" : "Edit current session"}
         <div className="edit-session-content">
+          <div className="edit-session-display-name">
+            <div>Session display name:</div>
+            <input
+              type="text"
+              value={this.state.displayName}
+              onChange={event =>
+                this.setState({ displayName: event.target.value })
+              }
+              placeholder="Session display name"
+            />
+          </div>
           <div className="edit-session-failure-rate">
             <div>Server failure rate:</div>
             <input

@@ -25,6 +25,7 @@ export interface EditSessionActions {
 
 export interface EditSessionState {
   readonly errorRate: number;
+  readonly displayName: string;
 }
 
 export interface EditSessionProps

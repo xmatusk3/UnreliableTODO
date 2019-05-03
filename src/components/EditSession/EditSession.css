@@ -2,30 +2,38 @@
   padding: 16px;
   background-color: rgba(255,255,255,0.4);
   border-radius: 16px;
+  text-align: center;
+  font-size: 32px;
 }
 .edit-session .edit-session-content {
   background-color: rgba(0,0,0,0.2);
   padding: 8px 24px;
+  margin-top: 16px;
   border-radius: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
-.edit-session .edit-session-content .edit-session-failure-rate {
+.edit-session .edit-session-content .edit-session-failure-rate,
+.edit-session .edit-session-content .edit-session-display-name {
+  padding-bottom: 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: 24px;
 }
-.edit-session .edit-session-content .edit-session-failure-rate div {
-  white-space: nowrap;
+.edit-session .edit-session-content .edit-session-failure-rate div,
+.edit-session .edit-session-content .edit-session-display-name div {
+  width: 30%;
 }
-.edit-session .edit-session-content .edit-session-failure-rate input {
+.edit-session .edit-session-content .edit-session-failure-rate input,
+.edit-session .edit-session-content .edit-session-display-name input {
   margin-left: 5%;
   border-radius: 8px;
   padding-left: 3px;
   font-size: 20px;
 }
+.edit-session .edit-session-content .item-actions {
+  width: 100%;
+}
 .edit-session .edit-session-content .item-actions i {
+  font-size: 32px;
   color: #000;
 }
