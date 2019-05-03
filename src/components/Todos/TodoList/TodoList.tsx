@@ -86,6 +86,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     if (!this.props.sessionExists) {
       return (
         <div className="todo-list">
+          <div className="todo-list-add-label">Please create a session</div>
           <div className="todo-list-add" title="Add new session">
             <i
               className="fas fa-plus"
@@ -99,6 +100,7 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     const items = this.renderItems();
     return (
       <div className="todo-list">
+        <div className="todo-list-add-label">Add a task</div>
         <div className="todo-list-add" title="Add new task">
           <i className="fas fa-plus" onClick={this.toggleAdd} />
         </div>
