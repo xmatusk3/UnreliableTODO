@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import ItemActions from "../Todos/ItemActions/ItemActions";
-import { EditSessionProps, EditSessionState } from "./types";
+import {
+  EditSessionReduxProps,
+  EditSessionProps,
+  EditSessionState,
+  EditSessionActions
+} from "./types";
 import { editSession } from "../../actions/session";
 import "./EditSession.css";
 import { TodoState } from "../../reducers/types";
@@ -47,7 +52,7 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
     return (
       <div className="edit-session">
         <div className="edit-session-content">
-          <div className="edit-session-input">
+          <div className="edit-session-failure-rate">
             <div>Server failure rate:</div>
             <input
               type="number"
@@ -62,7 +67,6 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
             deleteCallback={this.props.cancelCallback}
             deleteTitle="Cancel"
             completeTitle="Apply"
-            editTitle=""
           />
         </div>
       </div>
@@ -71,8 +75,9 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
 }
 
 export default connect(
-  ({ session }: TodoState) => ({
-    session
-  }),
-  { editSession, editMessage }
+  ({ session }: TodoState) =>
+    ({
+      session
+    } as EditSessionReduxProps),
+  { editSession, editMessage } as EditSessionActions
 )(EditSession);

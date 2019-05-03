@@ -5,11 +5,11 @@ interface EditSessionComponentProps {
   readonly cancelCallback: () => void;
 }
 
-interface EditSessionReduxProps {
+export interface EditSessionReduxProps {
   readonly session: Session;
 }
 
-interface EditSessionActions {
+export interface EditSessionActions {
   readonly editMessage: (message: Message) => void;
   readonly editSession: (
     session: Session,
