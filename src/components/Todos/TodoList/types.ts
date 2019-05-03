@@ -1,14 +1,18 @@
 import { ItemsState } from "../../../reducers/items/types";
 import { TodoItem } from "../../../actions/items/types";
 import { Session } from "../../../actions/session/types";
+import { selectSessionActionCreator } from "../../../actions";
 
 export interface TodoListComponentProps {
   readonly onEditCallback: () => void;
+  readonly onAddingCallback: () => void;
+  readonly onDeleteLastSessionCallback: () => void;
 }
 
 export interface TodoListReduxProps {
   readonly items: ItemsState;
-  readonly sessionExists: boolean;
+  readonly sessionId?: string;
+  readonly sessionIdDisplayNameMap: { [id: string]: string };
 }
 
 export interface TodoListActions {
@@ -19,6 +23,8 @@ export interface TodoListActions {
     session?: Session,
     successCallback?: () => void
   ) => void;
+  readonly getAllTodos: (id: string, callback: () => void) => void;
+  readonly selectSession: typeof selectSessionActionCreator;
 }
 
 export interface TodoListState {

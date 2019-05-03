@@ -34,7 +34,7 @@ const itemsReducer: Reducer<ItemsState, TodoActionTypes> = (
         ...state,
         [(payload as EditItemAction["payload"]).id]: {
           ...state[(payload as EditItemAction["payload"]).id],
-          ...payload
+          ...(payload as EditItemAction["payload"])
         }
       };
     case DELETE_ITEM:

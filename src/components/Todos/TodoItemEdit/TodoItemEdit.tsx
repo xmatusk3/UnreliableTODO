@@ -37,7 +37,7 @@ const TodoItemEdit: React.FC<TodoItemEditProps> = props => {
           Priority:
           <DropDownList
             onChange={event => setPriority(parseInt(event.target.value))}
-            defaultValue={`${priority}`}
+            value={`${priority}`}
             valueTextMap={getPriorityDDLValues()}
           />
         </div>

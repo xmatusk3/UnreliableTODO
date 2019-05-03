@@ -1,4 +1,10 @@
 export interface SessionState {
-  readonly sessionId?: string;
-  readonly errorRate?: number;
+  readonly selectedId?: string;
+  readonly sessions: {
+    [sessionId: string]: {
+      readonly displayName: string;
+      readonly sessionId: string;
+      readonly errorRate: number;
+    };
+  };
 }

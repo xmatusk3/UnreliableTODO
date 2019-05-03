@@ -38,7 +38,7 @@ export const addItem = (
         isCompleted: false,
         urgency: item.urgency
       }),
-      getState().session.sessionId
+      getState().session.selectedId as string
     );
 
     dispatch(addItemActionCreator(parseItemResponse(data.todo)));
@@ -59,7 +59,7 @@ export const deleteItem = (
   try {
     setLoadingMessage(dispatch);
 
-    await api.del(`todos/${itemId}`, getState().session.sessionId as string);
+    await api.del(`todos/${itemId}`, getState().session.selectedId as string);
 
     dispatch(deleteItemActionCreator(itemId));
     setSuccessMessage(dispatch, "Operation successful!");
@@ -86,7 +86,7 @@ export const editItem = (
         isCompleted,
         urgency
       }),
-      getState().session.sessionId as string
+      getState().session.selectedId as string
     );
 
     dispatch(editItemActionCreator(parseItemResponse(data.todo)));
@@ -98,7 +98,8 @@ export const editItem = (
 };
 
 export const getAllTodos = (
-  successCallback: () => void
+  sessionId: string,
+  successCallback?: () => void
 ): ThunkAction<
   Promise<void>,
   TodoState,
@@ -107,14 +108,14 @@ export const getAllTodos = (
 > => async dispatch => {
   try {
     setLoadingMessage(dispatch, "Fetching Todo items...");
-    const sessionId = sessionStorage.getItem("sessionId") || "";
+
     const { data } = await api.get<AllItemsResponse>("todos", sessionId);
 
     dispatch(saveTodosActionCreator(data.todos));
     setSuccessMessage(dispatch, "Items fetched successfully!");
     successCallback && successCallback();
   } catch {
-    setErrorMessage(dispatch, "Error, please restart the application.");
+    setErrorMessage(dispatch, "Error fetching items.");
   }
 };
 

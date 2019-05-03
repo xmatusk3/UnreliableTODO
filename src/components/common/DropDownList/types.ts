@@ -5,5 +5,6 @@ export interface DropDownListProps {
     readonly [key: string]: string;
   };
   readonly onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  readonly defaultValue: string;
+  readonly defaultValue?: string;
+  readonly value: string;
 }

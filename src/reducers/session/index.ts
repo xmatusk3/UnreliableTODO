@@ -1,8 +1,16 @@
 import { SessionState } from "./types";
 import { Reducer } from "redux";
-import { EDIT_SESSION, SessionActionTypes } from "../../actions/session/types";
+import {
+  EDIT_SESSION,
+  SessionActionTypes,
+  EditSessionAction,
+  SELECT_SESSION,
+  SelectSessionAction
+} from "../../actions/session/types";
 
-const INIT_STATE: SessionState = {};
+const INIT_STATE: SessionState = {
+  sessions: {}
+};
 
 const sessionReducer: Reducer<SessionState, SessionActionTypes> = (
   state = INIT_STATE,
@@ -10,7 +18,15 @@ const sessionReducer: Reducer<SessionState, SessionActionTypes> = (
 ) => {
   switch (type) {
     case EDIT_SESSION:
-      return { ...payload };
+      return {
+        selectedId: (payload as EditSessionAction["payload"]).selectedId,
+        sessions: { ...(payload as EditSessionAction["payload"]).sessions }
+      };
+    case SELECT_SESSION:
+      return {
+        ...state,
+        selectedId: payload as SelectSessionAction["payload"]
+      };
     default:
       return state;
   }

@@ -5,7 +5,11 @@ import "./DropDownList.css";
 
 const DropDownList: React.FC<DropDownListProps> = props => {
   return (
-    <select onChange={props.onChange} defaultValue={props.defaultValue}>
+    <select
+      value={props.value}
+      onChange={props.onChange}
+      defaultValue={props.defaultValue}
+    >
       {Object.keys(props.valueTextMap)
         .sort(
           (priorityA, priorityB) => parseInt(priorityB) - parseInt(priorityA)

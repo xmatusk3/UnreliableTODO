@@ -8,7 +8,7 @@ import {
   EditSessionState,
   EditSessionActions
 } from "./types";
-import { editSession } from "../../actions/session";
+import { editSession, addSession } from "../../actions/session";
 import "./EditSession.css";
 import { TodoState } from "../../reducers/types";
 import { editMessage } from "../../actions";
@@ -19,20 +19,24 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
     super(props);
 
     this.state = {
-      errorRate: Object.entries(this.props.session).length
-        ? this.props.session.errorRate
-        : 0
+      errorRate: this.props.session ? this.props.session.errorRate : 0
     };
   }
 
   onComplete = () => {
-    this.props.editSession(
-      {
-        ...this.props.session,
-        errorRate: this.state.errorRate
-      },
-      this.props.cancelCallback
-    );
+    this.props.isAdding
+      ? this.props.addSession(
+          this.state.errorRate,
+          "PLACEHOLDER",
+          this.props.cancelCallback
+        )
+      : this.props.editSession(
+          {
+            ...this.props.session,
+            errorRate: this.state.errorRate
+          },
+          this.props.cancelCallback
+        );
   };
 
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +81,7 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
 export default connect(
   ({ session }: TodoState) =>
     ({
-      session
+      session: session.selectedId && session.sessions[session.selectedId]
     } as EditSessionReduxProps),
-  { editSession, editMessage } as EditSessionActions
+  { editSession, editMessage, addSession } as EditSessionActions
 )(EditSession);

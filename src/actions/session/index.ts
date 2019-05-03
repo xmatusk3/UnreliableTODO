@@ -1,7 +1,14 @@
 import { ThunkAction } from "redux-thunk";
 import { AxiosResponse } from "axios";
+import _ from "lodash";
 
-import { EditSessionAction, EDIT_SESSION, SessionResponse } from "./types";
+import {
+  EditSessionAction,
+  SelectSessionAction,
+  EDIT_SESSION,
+  SessionResponse,
+  SELECT_SESSION
+} from "./types";
 import { Session } from "./types";
 import { TodoActionTypes, TodoState } from "../../reducers/types";
 import {
@@ -10,31 +17,71 @@ import {
   setErrorMessage
 } from "../../utils";
 import api from "../../api";
+import { SessionState } from "../../reducers/session/types";
+import { Dispatch } from "redux";
+import { getAllTodos } from "../items";
+
+export const addSession = (
+  errorRate: number,
+  displayName: string,
+  successCallback?: () => void
+): ThunkAction<Promise<void>, TodoState, {}, TodoActionTypes> => async (
+  dispatch: Dispatch,
+  getState: () => TodoState
+) => {
+  try {
+    setLoadingMessage(dispatch);
+    const sessionState = getState().session;
+    let { data } = await createSession(errorRate);
+
+    dispatch(
+      editSessionActionCreator({
+        selectedId: data.sessionId,
+        sessions: {
+          ...sessionState.sessions,
+          [data.sessionId]: {
+            sessionId: data.sessionId,
+            errorRate: data.errorRate,
+            displayName
+          }
+        }
+      })
+    );
+
+    setSuccessMessage(dispatch, "Operation successful!");
+    successCallback && successCallback();
+    getAllTodos(data.sessionId)(dispatch, getState, {});
+  } catch {
+    setErrorMessage(dispatch, "Error, please try again.");
+  }
+};
 
 export const editSession = (
   session?: Session,
   successCallback?: () => void
 ): ThunkAction<Promise<void>, TodoState, {}, TodoActionTypes> => async (
-  dispatch,
-  getState
+  dispatch: Dispatch,
+  getState: () => TodoState
 ) => {
   try {
     setLoadingMessage(dispatch);
+    const sessionState = getState().session;
 
     if (!session) {
-      // Delete session
-      await api.del("session", getState().session.sessionId as string);
-      dispatch(editSessionActionCreator());
+      await deleteSession(sessionState, dispatch);
     } else {
-      let { data } =
-        session.sessionId !== undefined
-          ? await updateSession(session)
-          : await createSession(session.errorRate);
-
+      let { data } = await updateSession(session);
       dispatch(
         editSessionActionCreator({
-          errorRate: data.errorRate,
-          sessionId: session.sessionId || data.sessionId
+          selectedId: session.sessionId,
+          sessions: {
+            ...sessionState.sessions,
+            [data.sessionId]: {
+              sessionId: session.sessionId,
+              errorRate: data.errorRate,
+              displayName: session.displayName
+            }
+          }
         })
       );
     }
@@ -46,11 +93,44 @@ export const editSession = (
   }
 };
 
-const editSessionActionCreator = (session?: Session) =>
+export const selectSessionActionCreator = (id: string) =>
+  ({
+    type: SELECT_SESSION,
+    payload: id
+  } as SelectSessionAction);
+
+const editSessionActionCreator = (sessionState: SessionState) =>
   ({
     type: EDIT_SESSION,
-    payload: session
+    payload: sessionState
   } as EditSessionAction);
+
+const deleteSession = async (
+  sessionState: SessionState,
+  dispatch: Dispatch
+) => {
+  await api.del("session", sessionState.selectedId as string);
+  const newSessions = _.omit(
+    sessionState.sessions,
+    sessionState.selectedId as string
+  );
+  const sessionsValues = Object.values(newSessions);
+
+  dispatch(
+    editSessionActionCreator({
+      selectedId: sessionsValues[0] && sessionsValues[0].sessionId,
+      sessions: newSessions
+    })
+  );
+
+  if (sessionsValues[0]) {
+    getAllTodos(sessionsValues[0].sessionId)(
+      dispatch,
+      () => ({} as TodoState),
+      {}
+    );
+  }
+};
 
 const updateSession = async ({
   sessionId,

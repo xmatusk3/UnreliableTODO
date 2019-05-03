@@ -26,7 +26,6 @@ export const patch = async <T>(
 export const get = async <T>(uriExtension: string, sessionId: string) =>
   await axios.get<T>(`${SERVER_URI}/${uriExtension}`, {
     headers: {
-      "Content-Type": "application/json",
       sessionId
     }
   });

@@ -8,12 +8,26 @@ import Header from "./Header/Header";
 
 const AppContainer: React.FC = () => {
   const [isEditMode, setEditMode] = useState(false);
+  const [isAdding, setAdding] = useState(true);
 
   const renderContent = () =>
     isEditMode ? (
-      <EditSession cancelCallback={() => setEditMode(false)} />
+      <EditSession
+        cancelCallback={() => setEditMode(false)}
+        isAdding={isAdding}
+      />
     ) : (
-      <TodoList onEditCallback={() => setEditMode(true)} />
+      <TodoList
+        onEditCallback={() => {
+          setEditMode(true);
+          setAdding(false);
+        }}
+        onAddingCallback={() => {
+          setEditMode(true);
+          setAdding(true);
+        }}
+        onDeleteLastSessionCallback={() => setAdding(true)}
+      />
     );
 
   return (

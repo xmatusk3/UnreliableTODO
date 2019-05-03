@@ -8,8 +8,16 @@ import {
   TodoListReduxProps,
   TodoListActions
 } from "./types";
-import { editItem, deleteItem, addItem } from "../../../actions/items";
-import { editSession } from "../../../actions/session";
+import {
+  editItem,
+  deleteItem,
+  addItem,
+  getAllTodos
+} from "../../../actions/items";
+import {
+  editSession,
+  selectSessionActionCreator
+} from "../../../actions/session";
 import TodoFilter from "../TodoFilter/TodoFilter";
 import {
   TodoItem as TodoItemInterface,
@@ -53,8 +61,14 @@ class TodoList extends Component<TodoListProps, TodoListState> {
 
   onDeleteSession = () => {
     if (window.confirm("Are you sure you want to delete current session?")) {
-      this.props.editSession(undefined);
+      this.props.editSession(undefined, () =>
+        this.props.onDeleteLastSessionCallback()
+      );
     }
+  };
+
+  onSelectSession = (value: string) => {
+    this.props.getAllTodos(value, () => this.props.selectSession(value));
   };
 
   renderItems() {
@@ -95,12 +109,12 @@ class TodoList extends Component<TodoListProps, TodoListState> {
     <div className="todo-change-session">
       Session:
       <DropDownList
-        valueTextMap={{ val: "session" }}
-        onChange={() => {}}
-        defaultValue={"val"}
+        valueTextMap={this.props.sessionIdDisplayNameMap}
+        onChange={({ target: { value } }) => this.onSelectSession(value)}
+        value={this.props.sessionId as string}
       />
       <ItemActions
-        addCallback={this.props.onEditCallback}
+        addCallback={this.props.onAddingCallback}
         editCallback={this.props.onEditCallback}
         deleteCallback={this.onDeleteSession}
         addTitle="Add session"
@@ -111,12 +125,12 @@ class TodoList extends Component<TodoListProps, TodoListState> {
   );
 
   render() {
-    if (!this.props.sessionExists) {
+    if (!this.props.sessionId) {
       return (
         <div className="todo-list">
           <div className="todo-list-add-label">Please create a session</div>
           <div className="todo-list-add" title="Add new session">
-            <i className="fas fa-plus" onClick={this.props.onEditCallback} />
+            <i className="fas fa-plus" onClick={this.props.onAddingCallback} />
           </div>
         </div>
       );
@@ -150,7 +164,21 @@ export default connect(
   ({ items, session }: TodoState) =>
     ({
       items,
-      sessionExists: !!session.sessionId
+      sessionId: session.selectedId,
+      sessionIdDisplayNameMap: Object.values(session.sessions).reduce(
+        (res, cur) => {
+          res[cur.sessionId] = cur.displayName;
+          return res;
+        },
+        {} as { [id: string]: string }
+      )
     } as TodoListReduxProps),
-  { editItem, deleteItem, addItem, editSession } as TodoListActions
+  {
+    editItem,
+    deleteItem,
+    addItem,
+    editSession,
+    selectSession: selectSessionActionCreator,
+    getAllTodos
+  } as TodoListActions
 )(TodoList);
