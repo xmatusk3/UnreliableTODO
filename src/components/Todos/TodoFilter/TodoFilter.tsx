@@ -8,11 +8,17 @@ import { TodoItem } from "../../../actions/items/types";
 
 const TodoFilter: React.FC<TodoFilterProps> = props => {
   const defaultValue = "Any";
+  const completedValue = "Completed";
   const ddlData = getPriorityDDLValues();
+  ddlData[completedValue] = completedValue;
   ddlData[defaultValue] = defaultValue;
 
   const getFilter = (selected: string) => (item: TodoItem) => {
-    return item.urgency === parseInt(selected) || selected === defaultValue;
+    return (
+      (item.urgency === parseInt(selected) && !item.isCompleted) ||
+      selected === defaultValue ||
+      (selected === completedValue && item.isCompleted)
+    );
   };
 
   return (

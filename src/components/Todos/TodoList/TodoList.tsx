@@ -111,7 +111,9 @@ class TodoList extends Component<TodoListProps, TodoListState> {
               this.setState({ filter })
             }
           />
-          {items.length ? items : "No tasks created. Please create one!"}
+          {items.length
+            ? items
+            : "No tasks to display. Please create a task or adjust the task filter!"}
         </div>
       </div>
     );
