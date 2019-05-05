@@ -1,5 +1,4 @@
 const api = require("../../../api");
-const axios = require("axios");
 
 import { itemB } from "../../../fakes/items";
 import { addItem, editMessage, addItemActionCreator } from "../../../actions";
@@ -9,7 +8,6 @@ import { TodoState } from "../../../reducers/types";
 import { parseItemResponse } from "../../../utils";
 import { MessageTypeEnum } from "../../../actions/message/types";
 
-jest.mock("axios");
 jest.mock("../../../api");
 
 describe("items thunks", () => {
@@ -28,6 +26,7 @@ describe("items thunks", () => {
       (api.post as jest.Mock).mockReturnValue({ data: { todo: itemB } });
       await addItem(itemB, successCallback)(dispatch, getState, {});
 
+      expect(dispatch).toHaveBeenCalledTimes(3);
       expect(dispatch).toBeCalledWith(
         editMessage({ type: MessageTypeEnum.Loading, text: "Adding item..." })
       );
@@ -40,6 +39,7 @@ describe("items thunks", () => {
       expect(dispatch).toHaveBeenCalledWith(
         addItemActionCreator(parseItemResponse(itemB))
       );
+      expect(successCallback).toHaveBeenCalled();
     });
 
     it("dispatches correct actions with unsuccessful request", async () => {
@@ -51,9 +51,11 @@ describe("items thunks", () => {
           text: "Error, failed to add the item."
         })
       );
+      expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toBeCalledWith(
         editMessage({ type: MessageTypeEnum.Loading, text: "Adding item..." })
       );
+      expect(successCallback).not.toHaveBeenCalled();
     });
   });
 });

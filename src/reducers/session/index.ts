@@ -8,7 +8,7 @@ import {
   SelectSessionAction
 } from "../../actions/session/types";
 
-const INIT_STATE: SessionState = {
+export const INIT_STATE: SessionState = {
   sessions: {}
 };
 

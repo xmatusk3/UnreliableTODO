@@ -99,7 +99,7 @@ export const selectSessionActionCreator = (id: string) =>
     payload: id
   } as SelectSessionAction);
 
-const editSessionActionCreator = (sessionState: SessionState) =>
+export const editSessionActionCreator = (sessionState: SessionState) =>
   ({
     type: EDIT_SESSION,
     payload: sessionState

@@ -1,16 +1,17 @@
 import { SessionState } from "../../reducers/session/types";
 
-const fakeSessionId = "fakeSessionId";
-const fakeDisplayName = "fakeDisplayName";
-const fakeErrorRate = 10;
+export const fakeSessionId = "fakeSessionId";
+export const fakeDisplayName = "fakeDisplayName";
+export const fakeErrorRate = 10;
+export const fakeSessions = {
+  [fakeSessionId]: {
+    sessionId: fakeSessionId,
+    displayName: fakeDisplayName,
+    errorRate: fakeErrorRate
+  }
+};
 
 export const getFakeSessionState = (): SessionState => ({
   selectedId: fakeSessionId,
-  sessions: {
-    [fakeSessionId]: {
-      sessionId: fakeSessionId,
-      displayName: fakeDisplayName,
-      errorRate: fakeErrorRate
-    }
-  }
+  sessions: fakeSessions
 });
