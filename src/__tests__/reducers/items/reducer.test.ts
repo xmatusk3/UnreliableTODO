@@ -16,6 +16,8 @@ import {
   idB,
   itemB
 } from "../../../fakes/items";
+import { EDIT_SESSION } from "../../../actions/session/types";
+import { getFakeSessionState } from "../../../fakes/session";
 
 describe("items reducer", () => {
   let fakeState: ItemsState;
@@ -76,6 +78,26 @@ describe("items reducer", () => {
           payload: expectedState
         })
       ).toEqual(expectedState);
+    });
+  });
+
+  describe("handles EDIT_SESSION", () => {
+    it("when payload is truthy", () => {
+      expect(
+        itemsReducer(fakeState, {
+          type: EDIT_SESSION,
+          payload: getFakeSessionState()
+        })
+      ).toEqual(fakeState);
+    });
+
+    it("when payload is falsy", () => {
+      expect(
+        itemsReducer(fakeState, {
+          type: EDIT_SESSION,
+          payload: { sessions: {} }
+        })
+      ).toEqual({ ...INIT_STATE });
     });
   });
 });
