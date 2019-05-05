@@ -15,7 +15,7 @@ import {
 import { EDIT_SESSION } from "../../actions/session/types";
 import { TodoActionTypes } from "../types";
 
-const INIT_STATE: ItemsState = {};
+export const INIT_STATE: ItemsState = {};
 
 const itemsReducer: Reducer<ItemsState, TodoActionTypes> = (
   state = INIT_STATE,

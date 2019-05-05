@@ -16,7 +16,8 @@ import { TodoState, TodoActionTypes } from "../../reducers/types";
 import {
   setLoadingMessage,
   setSuccessMessage,
-  setErrorMessage
+  setErrorMessage,
+  parseItemResponse
 } from "../../utils";
 import api from "../../api";
 import { ItemsState } from "../../reducers/items/types";
@@ -119,13 +120,13 @@ export const getAllTodos = (
   }
 };
 
-const saveTodosActionCreator = (items: ItemsState) =>
+export const saveTodosActionCreator = (items: ItemsState) =>
   ({
     type: SAVE_ITEMS,
     payload: items
   } as SaveAllItemsAction);
 
-const addItemActionCreator = (item: TodoItem) =>
+export const addItemActionCreator = (item: TodoItem) =>
   ({
     type: ADD_ITEM,
     payload: item
@@ -137,18 +138,10 @@ export const editItemActionCreator = (item: TodoItem) =>
     payload: item
   } as EditItemAction);
 
-const deleteItemActionCreator = (id: string) =>
+export const deleteItemActionCreator = (id: string) =>
   ({
     type: DELETE_ITEM,
     payload: {
       id
     }
   } as DeleteItemAction);
-
-const parseItemResponse = (item: TodoItem): TodoItem => {
-  return {
-    ...item,
-    created: new Date(item.created).toLocaleString(),
-    updated: new Date(item.updated).toLocaleString()
-  };
-};
