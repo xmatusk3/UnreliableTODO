@@ -48,9 +48,6 @@
   font-size: 20px;
   width: 70%;
 }
-.todo-list .todo-change-session select option {
-  text-align: center;
-}
 .todo-list .todo-change-session .item-actions i {
   color: #000;
 }

@@ -47,7 +47,7 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
         );
   };
 
-  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  onFailureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value) || 0;
 
     if (value >= 0 && value <= 100) {
@@ -83,7 +83,7 @@ class EditSession extends Component<EditSessionProps, EditSessionState> {
               min="0"
               max="100"
               value={this.state.errorRate}
-              onChange={this.onChange}
+              onChange={this.onFailureChange}
             />
           </div>
           <ItemActions

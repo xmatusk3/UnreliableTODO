@@ -76,7 +76,7 @@ export const editSession = (
           selectedId: session.sessionId,
           sessions: {
             ...sessionState.sessions,
-            [data.sessionId]: {
+            [session.sessionId]: {
               sessionId: session.sessionId,
               errorRate: data.errorRate,
               displayName: session.displayName
