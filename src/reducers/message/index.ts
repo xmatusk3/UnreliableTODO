@@ -2,7 +2,7 @@ import { MessageState } from "./types";
 import { MessageActionTypes, EDIT_MESSAGE } from "../../actions/message/types";
 import { Reducer } from "redux";
 
-const INIT_STATE: MessageState = {};
+export const INIT_STATE: MessageState = {};
 
 const messageReducer: Reducer<MessageState, MessageActionTypes> = (
   state = INIT_STATE,

@@ -57,5 +57,3 @@ describe("items thunks", () => {
     });
   });
 });
-
-export default undefined;

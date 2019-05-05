@@ -76,5 +76,3 @@ describe("items action creators", () => {
     });
   });
 });
-
-export default undefined;
