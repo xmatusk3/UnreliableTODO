@@ -66,7 +66,7 @@ describe("session thunks", () => {
     });
 
     it("dispatches correct actions when unsuccessful", async () => {
-      (api.post as jest.Mock).mockReturnValue("ERROR");
+      (api.post as jest.Mock).mockReturnValue(Promise.reject());
       await addSession(fakeErrorRate, fakeDisplayName, successCallback)(
         dispatch,
         getState,
@@ -160,7 +160,7 @@ describe("session thunks", () => {
     });
 
     it("dispatches correct actions when unsuccessful", async () => {
-      (api.patch as jest.Mock).mockReturnValue("ERROR");
+      (api.patch as jest.Mock).mockReturnValue(Promise.reject());
       await editSession(fakeSessions[fakeSessionId], successCallback)(
         dispatch,
         getState,
